@@ -5,19 +5,17 @@ import {
   StyledLoginFormInputLabel,
 } from "./Styled";
 
-class LoginFormInput extends React.Component {
-  render() {
-    return (
-      <StyledLoginFormInputGroup>
-        <StyledLoginFormInputLabel for={this.props.name}>
-          {this.props.title}:
-        </StyledLoginFormInputLabel>
-        <StyledLoginFormInput
-          name={this.props.name}
-          type={this.props.type ? this.props.type : "text"}
-        />
-      </StyledLoginFormInputGroup>
-    );
-  }
-}
+const LoginFormInput = () => {
+  return (
+    <StyledLoginFormInputGroup>
+      <StyledLoginFormInputLabel for={this.props.name}>
+        {this.props.title}:
+      </StyledLoginFormInputLabel>
+      <StyledLoginFormInput
+        name={this.props.name}
+        type={this.props.type ? this.props.type : "text"}
+      />
+    </StyledLoginFormInputGroup>
+  );
+};
 export default LoginFormInput;
