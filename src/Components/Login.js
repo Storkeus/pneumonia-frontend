@@ -6,10 +6,11 @@ import LoginFormLinks from "./LoginForm/LoginFormLinks";
 import {Link} from "react-router-dom";
 
 
+
 class Login extends React.Component {
   render() {
     return <LoginForm title="Zaloguj się">
-      <LoginFormInput title="Adres e-mail" type="e-mail" name="e-mail"/>
+      <LoginFormInput  title="Adres e-mail" type="e-mail" name="e-mail"/>
       <LoginFormInput title="Hasło" type="password" name="password"/>
       <LoginFormButton  name="Zaloguj się"/>
 

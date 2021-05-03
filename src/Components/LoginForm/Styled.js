@@ -1,12 +1,13 @@
+import { COLOR_LIGHT, COLOR_SPECIAL, COLOR_DARK } from "../../Const";
 import styled from "styled-components";
 
 export const StyledLoginForm = styled.form`
   display: flex;
   margin: 0 auto;
   flex-direction: column;
-  background-color: #536162;
+  background-color: ${COLOR_DARK};
   padding: 10px 15px 15px;
-  color: #f3f4ed;
+  color: ${COLOR_LIGHT};
   width: calc(100% - 30px);
   margin: 0 auto;
   max-width: 600px;
@@ -37,8 +38,8 @@ export const StyledLoginFormButton = styled.button`
   jusitfy-content: center;
   align-items: center;
   text-align: center;
-  background-color: #c06014;
-  color: #f3f4ed;
+  background-color: ${COLOR_SPECIAL};
+  color: ${COLOR_LIGHT};
   border-color: #fff;
   font-size: 22px;
   border: none;
@@ -52,7 +53,7 @@ export const StyledLoginFormLinks = styled.div`
   justify-content: flex-start;
 
   & a {
-    color: #f3f4ed;
+    color: ${COLOR_LIGHT};
     text-decoration: none;
   }
 `;
@@ -79,7 +80,7 @@ export const StyledLoginFormInput = styled.input`
   padding: 5px;
   background-color: rgba(243, 244, 237, 0.75);
   border: none;
-  border-bottom: 2px solid #c06014;
+  border-bottom: 2px solid ${COLOR_SPECIAL};
   color: #424642;
   font-size: 16px;
   &:focus,

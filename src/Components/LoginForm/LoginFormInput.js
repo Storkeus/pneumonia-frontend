@@ -1,19 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyledLoginFormInput,
   StyledLoginFormInputGroup,
   StyledLoginFormInputLabel,
 } from "./Styled";
 
-const LoginFormInput = () => {
+
+
+const LoginFormInput = (props) => {
+
+  const [inputValue,setInputValue]=useState('');
+
   return (
     <StyledLoginFormInputGroup>
-      <StyledLoginFormInputLabel for={this.props.name}>
-        {this.props.title}:
+      <StyledLoginFormInputLabel htmlFor={props.name}>
+        {props.title}:
       </StyledLoginFormInputLabel>
       <StyledLoginFormInput
-        name={this.props.name}
-        type={this.props.type ? this.props.type : "text"}
+        name={props.name}
+        id={props.name}
+        value={inputValue}
+        type={props.type ? props.type : "text"}
+        onChange={(e)=>{setInputValue(e.target.value)}}
       />
     </StyledLoginFormInputGroup>
   );
