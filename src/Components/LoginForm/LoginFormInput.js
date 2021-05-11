@@ -9,7 +9,10 @@ import {
 
 const LoginFormInput = (props) => {
 
-  const [inputValue,setInputValue]=useState('');
+  const [inputValueHook,setInputValueHook]=useState('');
+
+  const inputValue=props.value?props.value:inputValueHook;
+  const setInputValue=props.onChange?props.onChange:setInputValueHook;
 
   return (
     <StyledLoginFormInputGroup>
@@ -23,6 +26,7 @@ const LoginFormInput = (props) => {
         type={props.type ? props.type : "text"}
         onChange={(e)=>{setInputValue(e.target.value)}}
       />
+      <span>{props.errorInfo}</span>
     </StyledLoginFormInputGroup>
   );
 };

@@ -1,24 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import LoginForm from "./LoginForm/LoginForm";
 import LoginFormInput from "./LoginForm/LoginFormInput";
 import LoginFormButton from "./LoginForm/LoginFormButton";
 import LoginFormLinks from "./LoginForm/LoginFormLinks";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { checkIsValidEmail } from "../Common/FormValidation";
+import { loginAsync } from "../Redux/Slices/User";
+import { useDispatch } from "react-redux";
 
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [emailErrorInfo, setEmailErrorInfo] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordErrorInfo, setPasswordErrorInfo] = useState(false);
+   const dispatch = useDispatch();
 
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
 
-class Login extends React.Component {
-  render() {
-    return <LoginForm title="Zaloguj się">
-      <LoginFormInput  title="Adres e-mail" type="e-mail" name="e-mail"/>
-      <LoginFormInput title="Hasło" type="password" name="password"/>
-      <LoginFormButton  name="Zaloguj się"/>
+    let isProperForm = true;
+    if (!checkIsValidEmail(email)) {
+      isProperForm = false;
+      setEmailErrorInfo("Adres e-mail jest nieprawidłowy");
+    } else {
+      setEmailErrorInfo("");
+    }
 
+    console.log('Form Submit');
+
+   dispatch(loginAsync(email, password));
+  };
+
+  return (
+    <LoginForm onSubmit={handleFormSubmit} title="Zaloguj się">
+      <LoginFormInput
+        value={email}
+        onChange={setEmail}
+        errorInfo={emailErrorInfo}
+        title="Adres e-mail"
+        type="e-mail"
+        name="e-mail"
+      />
+      <LoginFormInput
+        value={password}
+        onChange={setPassword}
+        errorInfo={passwordErrorInfo}
+        title="Hasło"
+        type="password"
+        name="password"
+      />
+      <LoginFormButton name="Zaloguj się" />
       <LoginFormLinks>
-      <Link to="/password-reset">Przypomnij hasło.</Link>
+        <Link to="/password-reset">Przypomnij hasło.</Link>
       </LoginFormLinks>
-
-    </LoginForm>;
-  }
-}
+    </LoginForm>
+  );
+};
 export default Login;

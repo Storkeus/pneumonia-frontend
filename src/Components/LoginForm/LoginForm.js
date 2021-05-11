@@ -9,19 +9,13 @@ import {
 
 
 const LoginForm = (props) => {
-  const [errorInfo, setErrorInfo]=useState(null); 
 
-  const handleFormSubmit=(e)=>{
-    e.preventDefault();
-    
-    
-    setErrorInfo(<div>Adres e-mail jest nieprawidłowy</div>);
-  }
+
+  
   return (
     <StyledLoginFormContainer>
-      <StyledLoginForm onSubmit={handleFormSubmit}>
+      <StyledLoginForm onSubmit={props.onSubmit}>
         <StyledLoginFormTitle>{props.title}</StyledLoginFormTitle>
-        {errorInfo}
         <div className="login-form__input-container">{props.children}</div>
       </StyledLoginForm>
     </StyledLoginFormContainer>
