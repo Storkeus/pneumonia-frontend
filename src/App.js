@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Login from "./Components/Login";
 import PasswordReset from "./Components/PasswordReset";
+import PatientList from "./Components/PatientList";
 import UploadImage from "./Components/UploadImage";
 
 
@@ -25,18 +26,11 @@ class App extends React.Component {
           <Route path="/upload-image">
             <UploadImage></UploadImage>
           </Route>
+          <Route path="/patients">
+            <PatientList></PatientList>
+          </Route>
           <Route path="/">
-            <ul>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/password-reset">Reset hasła</Link>
-              </li>
-              <li>
-                <Link to="/upload-image">Prześlij zdjęcie</Link>
-              </li>
-            </ul>
+          <UploadImage></UploadImage>
           </Route>
         </Switch>
       </Router>

@@ -1,0 +1,66 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOutAlt,faBars, faUser, faUserAlt } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { logout } from "../Redux/Slices/User";
+import {
+  StyledMenuNav,
+  StyledMenuList,
+  StyledMenuItem,
+  StyledMenuLink,
+  StyledMenuLogoutButton,
+  StyledMenuOpenButton
+} from "./Styled";
+const Menu = (props) => {
+  const dispatch = useDispatch();
+
+  const [isMenuExpanded, setIsMenuExpanded ] = useState(false);
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
+  const openMenuHandler = () => {
+    setIsMenuExpanded(!isMenuExpanded);
+  };
+
+  return (
+    <StyledMenuNav>
+      <StyledMenuOpenButton title="Wyloguj" onClick={openMenuHandler}>
+        <FontAwesomeIcon icon={faBars} />
+      </StyledMenuOpenButton>
+
+      <StyledMenuList data-expanded={isMenuExpanded ? "true" : "false"}>
+        <StyledMenuItem>
+          <StyledMenuLink to="/upload-image">Prześlij zdjęcie</StyledMenuLink>
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <StyledMenuLink to="/patients">Lista pacjentów</StyledMenuLink>
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <StyledMenuLink to="/patients/add">Dodaj pacjenta</StyledMenuLink>
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <StyledMenuLink to="/users">Lista użytkowników</StyledMenuLink>
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <StyledMenuLink to="/users/add">Dodaj użytkownika</StyledMenuLink>
+        </StyledMenuItem>
+        <StyledMenuItem>
+          <StyledMenuLink to="/update-model">Aktualizuj model</StyledMenuLink>
+        </StyledMenuItem>
+      </StyledMenuList>
+      <div>
+      <StyledMenuLink to="/profile">
+      <FontAwesomeIcon icon={faUserAlt} />
+        </StyledMenuLink>
+        <StyledMenuLogoutButton title="Wyloguj" onClick={logoutHandler}>
+          <FontAwesomeIcon icon={faSignOutAlt} />
+        </StyledMenuLogoutButton>
+      </div>
+    </StyledMenuNav>
+  );
+};
+
+export default Menu;

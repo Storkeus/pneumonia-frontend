@@ -6,12 +6,12 @@ export const StyledLoginForm = styled.form`
   margin: 0 auto;
   flex-direction: column;
   background-color: ${COLOR_DARK};
-  padding: 10px 15px 15px;
+  padding: 1rem 1.5rem 1.5rem;
   color: ${COLOR_LIGHT};
-  width: calc(100% - 30px);
+  width: calc(100% - 3rem);
   margin: 0 auto;
-  max-width: 600px;
-  box-shadow: 10px 10px 18px -9px rgba(0, 0, 0, 0.43);
+  max-width: 60rem;
+  box-shadow: 1rem 1rem 1.8rem -0.9rem rgba(0, 0, 0, 0.43);
 `;
 
 export const StyledLoginFormTitle = styled.h2`
@@ -19,7 +19,7 @@ export const StyledLoginFormTitle = styled.h2`
   margin: 0 auto 0 0;
   flex-direction: column;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: .2rem;
 `;
 
 export const StyledLoginFormContainer = styled.div`
@@ -41,10 +41,10 @@ export const StyledLoginFormButton = styled.button`
   background-color: ${COLOR_SPECIAL};
   color: ${COLOR_LIGHT};
   border-color: #fff;
-  font-size: 22px;
+  font-size: 2.2rem;
   border: none;
-  padding: 5px 13px;
-  margin: 35px 0 15px auto;
+  padding: .5rem 1.3rem;
+  margin: 3.5rem 0 1.5rem auto;
 `;
 
 export const StyledLoginFormLinks = styled.div`
@@ -62,27 +62,27 @@ export const StyledLoginFormInputGroup = styled.div`
   display: flex;
   jusitfy-content: flex-start;
   align-items: center;
-  margin: 20px 0;
+  margin: 2rem 0;
   flex-direction: column;
   align-items: start;
 `;
 
 export const StyledLoginFormInputLabel = styled.label`
-  margin-right: 15px;
+  margin-right: 1.5rem;
   display: block;
   white-space: nowrap;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 `;
 
 export const StyledLoginFormInput = styled.input`
-  height: 40px;
+  height: 4rem;
   width: 100%;
-  padding: 5px;
+  padding: .5rem;
   background-color: rgba(243, 244, 237, 0.75);
   border: none;
-  border-bottom: 2px solid ${COLOR_SPECIAL};
+  border-bottom: .2rem solid ${COLOR_SPECIAL};
   color: #424642;
-  font-size: 16px;
+  font-size: 1.6rem;
   &:focus,
   &:active {
     outline: none;
