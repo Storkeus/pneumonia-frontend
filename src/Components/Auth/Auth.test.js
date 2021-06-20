@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import Auth from "./Auth";
 import AuthAdmin from "./AuthAdmin";
 import AuthUser from "./AuthUser";
