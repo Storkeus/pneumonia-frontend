@@ -5,11 +5,18 @@ import { useSelector } from "react-redux";
 
 const Auth = (props) => {
   const user = useSelector(selectUser);
-  if (props.condition(user)) {
-    return <Redirect to={props.redirectOnFail} />;
-  }
 
-  return <>{props.children}</>;
+  const {condition=false}=props;
+
+
+  const isConditionFunction=typeof(condition)==="function";
+    if ((isConditionFunction&&condition(user)||!isConditionFunction&&condition)) {
+      return <Redirect to={props.redirectOnFail} />;
+    }
+  
+    return <>{props.children}</>;
+
+
 };
 
 export default Auth;
