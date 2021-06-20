@@ -18,7 +18,7 @@ const PatientList = (props) => {
   const patientList = useSelector(selectList);
   const page = useSelector(selectPage);
   const search = useSelector(selectSearch);
-  const isLoading=useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoading);
 
   /**
    * Loading list of patients
@@ -32,18 +32,18 @@ const PatientList = (props) => {
    * @param {string} keyword
    */
   const handleSearchChange = (event) => {
-    const keyword=event.target.value;
-    dispatch(setSearch({search:keyword}));
+    const keyword = event.target.value;
+    dispatch(setSearch({ search: keyword }));
     dispatch(loadListAsync());
     console.log("Szukam!!!", keyword);
   };
-  
+
   /**
    * Handling page change on ItemList
    * @param {int} page
    */
   const handlePageChange = (page) => {
-    dispatch(setPage({page:page}));
+    dispatch(setPage({ page: page }));
     dispatch(loadListAsync());
     console.log("Zmieniam stronę!!!", page);
   };

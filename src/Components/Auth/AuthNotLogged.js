@@ -5,7 +5,7 @@ import { PERMISSIONS_ADMIN, PERMISSIONS_USER } from "../../Common/Permissions";
 const AuthNotLogged = (props) => {
   return (
     <Auth
-      condition={(user)=>
+      condition={(user) =>
         user &&
         (user.permissions == PERMISSIONS_USER ||
           user.permissions == PERMISSIONS_ADMIN)

@@ -1,5 +1,5 @@
 import React from "react";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Login from "./Components/Login";
@@ -8,14 +8,16 @@ import PatientList from "./Components/PatientList";
 import UserList from "./Components/UserList";
 import UploadImage from "./Components/UploadImage";
 
-
 class App extends React.Component {
   render() {
     return (
       <Router>
         <Helmet>
-        <title>System Wspomagania Pracy Lekarza</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+          <title>System Wspomagania Pracy Lekarza</title>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
         </Helmet>
         <Switch>
           <Route path="/login">
@@ -34,7 +36,7 @@ class App extends React.Component {
             <UserList></UserList>
           </Route>
           <Route path="/">
-          <UploadImage></UploadImage>
+            <UploadImage></UploadImage>
           </Route>
         </Switch>
       </Router>

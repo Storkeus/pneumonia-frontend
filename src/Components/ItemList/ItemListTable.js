@@ -18,9 +18,9 @@ import Pagination from "../Pagination/Pagination";
  */
 const ItemListTable = (props) => {
   const {
-    isLoading=false,
-    head=[],
-    rows=[],
+    isLoading = false,
+    head = [],
+    rows = [],
     search,
     page,
     handleSearchChange,

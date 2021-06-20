@@ -9,15 +9,15 @@ import AuthNotLogged from "./Auth/AuthNotLogged";
 const PasswordReset = () => {
   return (
     <AuthNotLogged>
-    <LoginForm title="Reset hasła">
-      <LoginFormInput title="Adres e-mail" type="e-mail" name="e-mail" />
-      <LoginFormInput title="Nowe hasło" type="password" name="password" />
-      <LoginFormButton name="Resetuj hasło" />
+      <LoginForm title="Reset hasła">
+        <LoginFormInput title="Adres e-mail" type="e-mail" name="e-mail" />
+        <LoginFormInput title="Nowe hasło" type="password" name="password" />
+        <LoginFormButton name="Resetuj hasło" />
 
-      <LoginFormLinks>
-        <Link to="/login">Powrót do logowania.</Link>
-      </LoginFormLinks>
-    </LoginForm>
+        <LoginFormLinks>
+          <Link to="/login">Powrót do logowania.</Link>
+        </LoginFormLinks>
+      </LoginForm>
     </AuthNotLogged>
   );
 };

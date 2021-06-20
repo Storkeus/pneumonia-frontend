@@ -19,7 +19,7 @@ export const StyledLoginFormTitle = styled.h2`
   margin: 0 auto 0 0;
   flex-direction: column;
   text-transform: uppercase;
-  letter-spacing: .2rem;
+  letter-spacing: 0.2rem;
 `;
 
 export const StyledLoginFormContainer = styled.div`
@@ -43,7 +43,7 @@ export const StyledLoginFormButton = styled.button`
   border-color: #fff;
   font-size: 2.2rem;
   border: none;
-  padding: .5rem 1.3rem;
+  padding: 0.5rem 1.3rem;
   margin: 3.5rem 0 1.5rem auto;
 `;
 
@@ -77,10 +77,10 @@ export const StyledLoginFormInputLabel = styled.label`
 export const StyledLoginFormInput = styled.input`
   height: 4rem;
   width: 100%;
-  padding: .5rem;
+  padding: 0.5rem;
   background-color: rgba(243, 244, 237, 0.75);
   border: none;
-  border-bottom: .2rem solid ${COLOR_SPECIAL};
+  border-bottom: 0.2rem solid ${COLOR_SPECIAL};
   color: #424642;
   font-size: 1.6rem;
   &:focus,

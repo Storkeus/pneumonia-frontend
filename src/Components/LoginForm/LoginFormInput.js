@@ -5,14 +5,11 @@ import {
   StyledLoginFormInputLabel,
 } from "./Styled";
 
-
-
 const LoginFormInput = (props) => {
+  const [inputValueHook, setInputValueHook] = useState("");
 
-  const [inputValueHook,setInputValueHook]=useState('');
-
-  const inputValue=props.value?props.value:inputValueHook;
-  const setInputValue=props.onChange?props.onChange:setInputValueHook;
+  const inputValue = props.value ? props.value : inputValueHook;
+  const setInputValue = props.onChange ? props.onChange : setInputValueHook;
 
   return (
     <StyledLoginFormInputGroup>
@@ -24,7 +21,9 @@ const LoginFormInput = (props) => {
         id={props.name}
         value={inputValue}
         type={props.type ? props.type : "text"}
-        onChange={(e)=>{setInputValue(e.target.value)}}
+        onChange={(e) => {
+          setInputValue(e.target.value);
+        }}
       />
       <span>{props.errorInfo}</span>
     </StyledLoginFormInputGroup>
