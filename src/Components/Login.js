@@ -9,6 +9,10 @@ import { loginAsync } from "../Redux/Slices/User";
 import { useDispatch } from "react-redux";
 import AuthNotLogged from "./Auth/AuthNotLogged";
 
+/**
+ * Login page
+ * @returns {object} \<AuthNotLogged\>
+ */
 const Login = () => {
   const [email, setEmail] = useState("");
   const [emailErrorInfo, setEmailErrorInfo] = useState(false);

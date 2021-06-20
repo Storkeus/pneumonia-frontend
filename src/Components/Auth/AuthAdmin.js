@@ -5,7 +5,8 @@ import { PERMISSIONS_ADMIN } from "../../Common/Permissions";
 /**
  * Redirects to /login if currently logged user doesn't have an admin permissions.
  * @param {object} props
- * @returns {object} <Auth>
+ * @param {object} props.children //react component that requires auth
+ * @returns {object} \<Auth\>
  */
 const AuthAdmin = (props) => {
   return (

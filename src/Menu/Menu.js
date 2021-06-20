@@ -17,6 +17,12 @@ import {
   StyledButtonContainer,
   StyledMenuOpenButton,
 } from "./Styled";
+
+/**
+ * Menu component
+ * @param {object} props
+ * @returns {object} \<StyledMenuNav\>
+ */
 const Menu = (props) => {
   const dispatch = useDispatch();
 

@@ -13,8 +13,19 @@ import {
   StyledItemListFooter,
 } from "./Styled";
 import Pagination from "../Pagination/Pagination";
+
 /**
  * Presentation Component for ItemList based on html <table>
+ * @param {object} props
+ * @param {boolean} props.isLoading true if data is currently loading
+ * @param {null|Array.<{name: String, columnName: String}>} props.head  informations about table headers
+ * @param {null|array} props.rows  informations displayed in rows
+ * @param {null|string} props.search search keyword
+ * @param {null|number} props.page page number
+ * @param {null|function} props.handleSearchChange search change handler
+ * @param {null|function} props.handlePageChange page change handler
+ * @param {null|Array.<{key: String, title: String, onClick: Function}>} props.actions actions that user can perform on each row
+ * @returns {object} \<StyledItemListTableScrollable\>
  */
 const ItemListTable = (props) => {
   const {

@@ -6,6 +6,10 @@ import LoginFormLinks from "./LoginForm/LoginFormLinks";
 import { Link } from "react-router-dom";
 import AuthNotLogged from "./Auth/AuthNotLogged";
 
+/**
+ * Password reset page
+ * @returns {object} \<AuthNotLogged\>
+ */
 const PasswordReset = () => {
   return (
     <AuthNotLogged>

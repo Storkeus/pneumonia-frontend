@@ -8,7 +8,10 @@ import { useSelector } from "react-redux";
  * Redirect to address specfied in props.redirecOnFail if props.condition is not met,
  * renders props.children otherwise.
  * @param {object} props
- * @returns {object} props.children or <Redirect> component
+ * @param {boolean,function} props.condition
+ * @param {null,string} props.redirectOnFail //target addres of redirect if condition failed
+ * @param {object} props.children //react component that requires auth
+ *  @returns {object} props.children or \<Redirect\> component
  */
 const Auth = (props) => {
   const user = useSelector(selectUser);

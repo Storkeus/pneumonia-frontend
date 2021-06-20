@@ -5,6 +5,17 @@ import {
   StyledLoginFormInputLabel,
 } from "./Styled";
 
+/**
+ * Input component for login form
+ * @param {object} props
+ * @param {null|string|number} props.value value of input if given from parent
+ * @param {null|function} props.onChange change event handler if given from parent
+ * @param {string} props.name input name
+ * @param {string} props.title input title
+ * @param {string} props.type input type
+ * @param {string} props.errorInfo validation error info
+ * @returns
+ */
 const LoginFormInput = (props) => {
   const [inputValueHook, setInputValueHook] = useState("");
 

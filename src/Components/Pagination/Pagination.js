@@ -6,7 +6,11 @@ import {
 } from "./Styled";
 
 /**
- * A pagination component
+ * Pagination component
+ * @param {object} props
+ * @param  {number} props.page current page number
+ * @param {function} props.handlePageChange page change handler
+ * @returns {object} \<StyledPagination\>
  */
 const Pagination = (props) => {
   const { page, handlePageChange } = props;

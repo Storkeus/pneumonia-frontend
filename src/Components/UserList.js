@@ -13,6 +13,11 @@ import AuthAdmin from "./Auth/AuthAdmin";
 import ItemList from "./ItemList/ItemList";
 import Page from "./Page/Page";
 
+/**
+ * User list page
+ * @param {object} props
+ * @returns {object} \<AuthAdmin\>
+ */
 const UserList = (props) => {
   const dispatch = useDispatch();
   const patientList = useSelector(selectList);
