@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import LoginForm from "./LoginForm/LoginForm";
 import LoginFormInput from "./LoginForm/LoginFormInput";
 import LoginFormButton from "./LoginForm/LoginFormButton";
@@ -29,17 +29,14 @@ const Login = () => {
       setEmailErrorInfo("");
     }
 
-
+    setPasswordErrorInfo("");
     // setPasswordErrorInfo("");
-    dispatch(loginAsync(email, password)).then(()=>{
-
-      setPasswordErrorInfo("Podane dane są nieprawidłowe");
+    dispatch(loginAsync(email, password)).then((isLogged) => {
+      if (!isLogged) {
+        setPasswordErrorInfo("Podane dane są nieprawidłowe");
+      }
     });
-
   };
-
-
-
 
   return (
     <AuthNotLogged>
@@ -55,7 +52,7 @@ const Login = () => {
         <LoginFormInput
           value={password}
           onChange={setPassword}
-          errorInfo={isUser?'':passwordErrorInfo}
+          errorInfo={isUser ? "" : passwordErrorInfo}
           title="Hasło"
           type="password"
           name="password"
