@@ -9,26 +9,29 @@ import LoginFormLinks from "./LoginFormLinks";
 import LoginFormInput from "./LoginFormInput";
 
 
+describe('LoginForm',()=>
+{
+
 /**
  * Smoke tests of LoginForm components
  */
 
- it('LoginFormLinks renders without crashing',()=>{
+ test('LoginFormLinks renders without crashing',()=>{
   render(<LoginFormLinks/>);
 });
 
 
- it('LoginFormInput renders without crashing',()=>{
+ test('LoginFormInput renders without crashing',()=>{
   render(<LoginFormInput/>);
 });
 
 
- it('LoginFormButton renders without crashing',()=>{
+ test('LoginFormButton renders without crashing',()=>{
   render(<LoginFormButton/>);
 });
 
 
-it('LoginForm renders without crashing',()=>{
+test('LoginForm renders without crashing',()=>{
   render(<LoginForm/>);
 });
 
@@ -71,3 +74,4 @@ it('LoginForm renders without crashing',()=>{
 //   const validationError = screen.queryByText(/Adres e-mail jest nieprawidłowy/i);
 //   expect(validationError).toBeNull();
 // });
+});

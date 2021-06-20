@@ -6,7 +6,9 @@ import AuthNotLogged from './AuthNotLogged';
 import { Provider } from "react-redux";
 import store from "../../Redux/Store";
 import { BrowserRouter as Router} from "react-router-dom";
-/**
+
+describe('Auth', () => {
+  /**
  * Smoke tests of Auth Components
  */
 
@@ -26,3 +28,5 @@ it('AuthUser renders without crashing',()=>{
 it('AuthNotLogged renders without crashing',()=>{
   render(<Provider store={store}><Router><AuthNotLogged/></Router></Provider>);
 });
+})
+

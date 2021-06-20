@@ -3,15 +3,17 @@ import ItemListTable from './ItemListTable';
 import ItemList from './ItemList';
 
 
+describe('ItemList',()=>{
 /**
  * Smoke tests of ItemList Components
  */
 
- it('ItemListTable renders without crashing',()=>{
+ test('ItemListTable renders without crashing',()=>{
   render(<ItemListTable/>);
 });
 
 
-it('ItemList renders without crashing',()=>{
+test('ItemList renders without crashing',()=>{
   render(<ItemList/>);
+});
 });
