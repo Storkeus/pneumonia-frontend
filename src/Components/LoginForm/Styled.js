@@ -35,7 +35,7 @@ export const StyledLoginFormContainer = styled.div`
 
 export const StyledLoginFormButton = styled.button`
   display: flex;
-  jusitfy-content: center;
+  justify-content: center;
   align-items: center;
   text-align: center;
   background-color: ${COLOR_SPECIAL};
@@ -60,7 +60,7 @@ export const StyledLoginFormLinks = styled.div`
 
 export const StyledLoginFormInputGroup = styled.div`
   display: flex;
-  jusitfy-content: flex-start;
+  justify-content: flex-start;
   align-items: center;
   margin: 2rem 0;
   flex-direction: column;

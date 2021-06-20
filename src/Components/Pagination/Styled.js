@@ -1,10 +1,5 @@
 import styled from "styled-components";
-import {
-  COLOR_CONTENT_BACKGROUND,
-  COLOR_DARK,
-  COLOR_LIGHT,
-  COLOR_SPECIAL,
-} from "../../Const";
+import { COLOR_DARK, COLOR_LIGHT, COLOR_SPECIAL } from "../../Const";
 
 export const StyledPagination = styled.div`
   display: flex;

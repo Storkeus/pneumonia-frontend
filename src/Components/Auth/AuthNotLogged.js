@@ -7,8 +7,8 @@ const AuthNotLogged = (props) => {
     <Auth
       condition={(user) =>
         user &&
-        (user.permissions == PERMISSIONS_USER ||
-          user.permissions == PERMISSIONS_ADMIN)
+        (user.permissions === PERMISSIONS_USER ||
+          user.permissions === PERMISSIONS_ADMIN)
       }
       redirectOnFail="/"
     >

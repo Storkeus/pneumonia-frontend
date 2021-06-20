@@ -5,24 +5,21 @@ import LoginFormButton from "./LoginForm/LoginFormButton";
 import LoginFormLinks from "./LoginForm/LoginFormLinks";
 import { Link } from "react-router-dom";
 import { checkIsValidEmail } from "../Common/FormValidation";
-import { loginAsync, selectUser } from "../Redux/Slices/User";
-import { useDispatch, useSelector } from "react-redux";
+import { loginAsync } from "../Redux/Slices/User";
+import { useDispatch } from "react-redux";
 import AuthNotLogged from "./Auth/AuthNotLogged";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [emailErrorInfo, setEmailErrorInfo] = useState(false);
   const [password, setPassword] = useState("");
-  const [isUser, setIsUser] = useState(false);
   const [passwordErrorInfo, setPasswordErrorInfo] = useState(false);
   const dispatch = useDispatch();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    let isProperForm = true;
     if (!checkIsValidEmail(email)) {
-      isProperForm = false;
       setEmailErrorInfo("Adres e-mail jest nieprawidłowy");
       return;
     } else {
@@ -30,7 +27,6 @@ const Login = () => {
     }
 
     setPasswordErrorInfo("");
-    // setPasswordErrorInfo("");
     dispatch(loginAsync(email, password)).then((isLogged) => {
       if (!isLogged) {
         setPasswordErrorInfo("Podane dane są nieprawidłowe");
@@ -52,7 +48,7 @@ const Login = () => {
         <LoginFormInput
           value={password}
           onChange={setPassword}
-          errorInfo={isUser ? "" : passwordErrorInfo}
+          errorInfo={passwordErrorInfo}
           title="Hasło"
           type="password"
           name="password"

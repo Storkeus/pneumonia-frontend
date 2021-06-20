@@ -55,7 +55,7 @@ const createItemListSlice = ({ sliceName, url }) => {
 
       let list;
 
-      if (url == "/patients") {
+      if (url === "/patients") {
         list = [
           {
             id: Math.floor(Math.random() * 1000),
@@ -74,7 +74,7 @@ const createItemListSlice = ({ sliceName, url }) => {
         ];
       }
 
-      if (url == "/users") {
+      if (url === "/users") {
         list = [
           {
             id: Math.floor(Math.random() * 1000),

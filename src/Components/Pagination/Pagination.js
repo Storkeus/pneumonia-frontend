@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyledPagination,
   StyledPaginationButton,
@@ -22,7 +22,7 @@ const Pagination = (props) => {
   return (
     <StyledPagination>
       <StyledPaginationButton
-        data-hidden={page == 1}
+        data-hidden={page === 1}
         onClick={handleClickBefore}
       >
         Poprzednia
@@ -32,7 +32,7 @@ const Pagination = (props) => {
         strona {page} z {totalPage}
       </StyledPageInfo>
       <StyledPaginationButton
-        data-hidden={page == totalPage}
+        data-hidden={page === totalPage}
         onClick={handleClickNext}
       >
         Następna

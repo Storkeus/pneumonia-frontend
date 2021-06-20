@@ -66,8 +66,8 @@ export const StyledMenuItem = styled.li`
 
   @media (max-width: ${991 / 16}rem) {
     width: 100%;
-    text-align:left:
-    padding:.5rem 0;
+    text-align: left;
+    padding: 0.5rem 0;
     // border-bottom:.1rem solid ${COLOR_SPECIAL};
   }
 `;

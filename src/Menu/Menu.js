@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSignOutAlt,
   faBars,
-  faUser,
   faUserAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";

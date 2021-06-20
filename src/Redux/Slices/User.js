@@ -30,9 +30,10 @@ export const loginAsync = (email, password) => async (dispatch) => {
   const connection = await fetch("http://numbersapi.com/98", {
     mode: "no-cors", // no-cors, *cors, same-origin
   });
+  // eslint-disable-next-line no-unused-vars
   const result = await connection.text();
 
-  if (email == "bartosz.lyzwa@o2.pl" && password == "password") {
+  if (email === "bartosz.lyzwa@o2.pl" && password === "password") {
     const token = "TEMP_TOKEN";
     const permissions = PERMISSIONS_ADMIN;
     dispatch(
