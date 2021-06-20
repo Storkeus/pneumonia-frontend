@@ -90,6 +90,12 @@ export const StyledMenuLink = styled(Link)`
   {
       color:${COLOR_SPECIAL};
   }
+
+  &:focus,&:active,&focus-visible
+  {
+    outline:.1rem dashed ${COLOR_LIGHT};
+    outline-offset:.5rem;
+  }
 `;
 
 const StyledMenuButton = styled.button`
@@ -106,6 +112,13 @@ font-size: 2.5rem;
   cursor: pointer;
   color:${COLOR_SPECIAL}
 }
+
+
+&:focus,&:active,&focus-visible
+{
+  outline:.1rem dashed ${COLOR_LIGHT};
+  outline-offset:.5rem;
+}
 `;
 
 export const StyledMenuLogoutButton = styled(StyledMenuButton)`
@@ -119,4 +132,15 @@ export const StyledMenuOpenButton = styled(StyledMenuButton)`
     display:none;
   }
   
+`;
+
+export const StyledButtonContainer=styled.div`
+display:flex;
+align-items:center;
+justify-content:flex-start;
+padding-left:5px;
+`;
+
+export const StyledMenuLinkToProfile=styled(StyledMenuLink)`
+margin: 0 0 .5rem 1rem;
 `;

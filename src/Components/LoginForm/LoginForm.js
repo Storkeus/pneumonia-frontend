@@ -5,11 +5,7 @@ import {
   StyledLoginFormTitle,
 } from "./Styled";
 
-
-
-
 const LoginForm = (props) => {
-
   return (
     <StyledLoginFormContainer>
       <StyledLoginForm onSubmit={props.onSubmit}>

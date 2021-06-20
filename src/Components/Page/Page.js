@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment, selectCount } from "../../Redux/Slices/Counter";
 import Menu from "../../Menu/Menu";
+import { StyledPageContainer,StyledPageTitle } from "./Styled";
 
 
 const Page= (props) => {
@@ -11,11 +12,10 @@ const Page= (props) => {
   return (
     <main>
       <Menu></Menu>
+      <StyledPageContainer>
+        <StyledPageTitle>{props.title}</StyledPageTitle>
       {props.children}
-
-      {/* <h1>The count is {count}</h1>
-      <button onClick={()=>dispatch(increment())}>increment</button>
-      <button onClick={()=>dispatch(decrement())}>decrement</button> */}
+      </StyledPageContainer>
     </main>
   );
 };

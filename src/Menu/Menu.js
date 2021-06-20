@@ -9,7 +9,9 @@ import {
   StyledMenuList,
   StyledMenuItem,
   StyledMenuLink,
+  StyledMenuLinkToProfile,
   StyledMenuLogoutButton,
+  StyledButtonContainer,
   StyledMenuOpenButton
 } from "./Styled";
 const Menu = (props) => {
@@ -51,14 +53,14 @@ const Menu = (props) => {
           <StyledMenuLink to="/update-model">Aktualizuj model</StyledMenuLink>
         </StyledMenuItem>
       </StyledMenuList>
-      <div>
-      <StyledMenuLink to="/profile">
+      <StyledButtonContainer>
+      <StyledMenuLinkToProfile to="/profile">
       <FontAwesomeIcon icon={faUserAlt} />
-        </StyledMenuLink>
+        </StyledMenuLinkToProfile>
         <StyledMenuLogoutButton title="Wyloguj" onClick={logoutHandler}>
           <FontAwesomeIcon icon={faSignOutAlt} />
         </StyledMenuLogoutButton>
-      </div>
+      </StyledButtonContainer>
     </StyledMenuNav>
   );
 };

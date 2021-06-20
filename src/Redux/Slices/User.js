@@ -17,27 +17,31 @@ export const userSlice = createSlice({
       state.permissions = permissions;
     },
     logout: (state) => {
-      console.log('test');
       state.email = "";
       state.token = "";
       state.permissions = "";
-    },
+    }
   },
 });
 
 export const { loginSucess,logout } = userSlice.actions;
 
-export const loginAsync = (email, password) => (dispatch) => {
-  setTimeout(() => {
+export const loginAsync = (email, password) => async (dispatch) => {
+
+  const connection=await fetch('http://numbersapi.com/98',{
+    mode: 'no-cors', // no-cors, *cors, same-origin
+  });
+  const result=await connection.text();
+
     if (email == "bartosz.lyzwa@o2.pl" && password == "password") {
       const token = "TEMP_TOKEN";
       const permissions = PERMISSIONS_ADMIN;
-      dispatch(loginSucess({ email: email, token: token, permissions: permissions }));
-      return true;
+     
+      return dispatch(loginSucess({ email: email, token: token, permissions: permissions }));;
     } else {
-      return false;
+      return  dispatch(logout);;
     }
-  }, 1000);
+
 };
 
 export const selectUser = (state) => state.user;

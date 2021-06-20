@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./Components/Login";
 import PasswordReset from "./Components/PasswordReset";
 import PatientList from "./Components/PatientList";
+import UserList from "./Components/UserList";
 import UploadImage from "./Components/UploadImage";
 
 
@@ -28,6 +29,9 @@ class App extends React.Component {
           </Route>
           <Route path="/patients">
             <PatientList></PatientList>
+          </Route>
+          <Route path="/users">
+            <UserList></UserList>
           </Route>
           <Route path="/">
           <UploadImage></UploadImage>

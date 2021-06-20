@@ -8,12 +8,12 @@ import {
   selectIsLoading,
   setPage,
   setSearch,
-} from "../Redux/Slices/PatientList";
+} from "../Redux/Slices/UserList";
 import AuthAdmin from "./Auth/AuthAdmin";
 import ItemList from "./ItemList/ItemList";
 import Page from "./Page/Page";
 
-const PatientList = (props) => {
+const UserList = (props) => {
   const dispatch = useDispatch();
   const patientList = useSelector(selectList);
   const page = useSelector(selectPage);
@@ -35,7 +35,6 @@ const PatientList = (props) => {
     const keyword=event.target.value;
     dispatch(setSearch({search:keyword}));
     dispatch(loadListAsync());
-    console.log("Szukam!!!", keyword);
   };
   
   /**
@@ -45,7 +44,7 @@ const PatientList = (props) => {
   const handlePageChange = (page) => {
     dispatch(setPage({page:page}));
     dispatch(loadListAsync());
-    console.log("Zmieniam stronę!!!", page);
+
   };
 
   /**
@@ -66,7 +65,7 @@ const PatientList = (props) => {
 
   return (
     <AuthAdmin>
-      <Page title="Lista pacjentów">
+      <Page title="Lista użytkowników">
         <ItemList
           isLoading={isLoading}
           page={page}
@@ -75,20 +74,19 @@ const PatientList = (props) => {
           handleSearchChange={handleSearchChange}
           head={[
             { name: "ID", columnName: "id" },
+            { name: "Login", columnName: "login" },
             { name: "Imię", columnName: "name" },
             { name: "Nazwisko", columnName: "surname" },
-            { name: "Wiek", columnName: "age" },
-            { name: "Płeć", columnName: "sex" },
           ]}
           rows={patientList}
           actions={[
             {
-              title: "Edytuj dane pacjenta",
+              title: "Edytuj dane użytkownika",
               name: "Edytuj",
               handler: handleActionEdit,
             },
             {
-              title: "Usuń pacjenta",
+              title: "Usuń użytkownika",
               name: "Usuń",
               handler: handleActionRemove,
             },
@@ -99,4 +97,4 @@ const PatientList = (props) => {
   );
 };
 
-export default PatientList;
+export default UserList;
