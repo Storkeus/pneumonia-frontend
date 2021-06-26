@@ -35,7 +35,7 @@ export const StyledMenuList = styled.ul`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  
+
   @media (max-width: ${991 / 16}rem) {
     flex-direction: column;
     align-items: flex-start;
@@ -45,18 +45,16 @@ export const StyledMenuList = styled.ul`
     top: ${menuHeight};
     z-index: 100;
     background-color: ${COLOR_DARK};
-    padding:1rem 0;
-    transform:translateX(-100%);
-    transition:transform 200ms;
+    padding: 1rem 0;
+    transform: translateX(-100%);
+    transition: transform 200ms;
 
     -webkit-box-shadow: 7px 10px 20px -13px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 7px 10px 20px -13px rgba(0, 0, 0, 0.75);
     box-shadow: 7px 10px 20px -13px rgba(0, 0, 0, 0.75);
 
-
-    &[data-expanded="true"]
-    {
-        transform:translateX(0);
+    &[data-expanded="true"] {
+      transform: translateX(0);
     }
   }
 `;
@@ -68,8 +66,8 @@ export const StyledMenuItem = styled.li`
 
   @media (max-width: ${991 / 16}rem) {
     width: 100%;
-    text-align:left:
-    padding:.5rem 0;
+    text-align: left;
+    padding: 0.5rem 0;
     // border-bottom:.1rem solid ${COLOR_SPECIAL};
   }
 `;
@@ -86,39 +84,39 @@ export const StyledMenuLink = styled(Link)`
     align-items: center;
   }
 
-  &:hover
-  {
-      color:${COLOR_SPECIAL};
+  &:hover {
+    color: ${COLOR_SPECIAL};
   }
 
-  &:focus,&:active,&focus-visible
-  {
-    outline:.1rem dashed ${COLOR_LIGHT};
-    outline-offset:.5rem;
+  &:focus,
+  &:active,
+  &focus-visible {
+    outline: 0.1rem dashed ${COLOR_LIGHT};
+    outline-offset: 0.5rem;
   }
 `;
 
 const StyledMenuButton = styled.button`
-color: ${COLOR_LIGHT};
-background-color: transparent;
-border: none;
-font-size: 2.5rem;
+  color: ${COLOR_LIGHT};
+  background-color: transparent;
+  border: none;
+  font-size: 2.5rem;
 
-@media (max-width: ${1199 / 16}rem) {
-  font-size: 2.1rem;
-}
+  @media (max-width: ${1199 / 16}rem) {
+    font-size: 2.1rem;
+  }
 
-&:hover {
-  cursor: pointer;
-  color:${COLOR_SPECIAL}
-}
+  &:hover {
+    cursor: pointer;
+    color: ${COLOR_SPECIAL};
+  }
 
-
-&:focus,&:active,&focus-visible
-{
-  outline:.1rem dashed ${COLOR_LIGHT};
-  outline-offset:.5rem;
-}
+  &:focus,
+  &:active,
+  &focus-visible {
+    outline: 0.1rem dashed ${COLOR_LIGHT};
+    outline-offset: 0.5rem;
+  }
 `;
 
 export const StyledMenuLogoutButton = styled(StyledMenuButton)`
@@ -129,18 +127,17 @@ export const StyledMenuOpenButton = styled(StyledMenuButton)`
   margin: 0 auto 0 0;
 
   @media (min-width: ${992 / 16}rem) {
-    display:none;
+    display: none;
   }
-  
 `;
 
-export const StyledButtonContainer=styled.div`
-display:flex;
-align-items:center;
-justify-content:flex-start;
-padding-left:5px;
+export const StyledButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 5px;
 `;
 
-export const StyledMenuLinkToProfile=styled(StyledMenuLink)`
-margin: 0 0 .5rem 1rem;
+export const StyledMenuLinkToProfile = styled(StyledMenuLink)`
+  margin: 0 0 0.5rem 1rem;
 `;

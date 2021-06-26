@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loadListAsync,
@@ -13,37 +13,42 @@ import AuthAdmin from "./Auth/AuthAdmin";
 import ItemList from "./ItemList/ItemList";
 import Page from "./Page/Page";
 
+/**
+ * Patient list page
+ * @param {object} props
+ * @returns {object} \<AuthAdmin\>
+ */
 const PatientList = (props) => {
   const dispatch = useDispatch();
   const patientList = useSelector(selectList);
   const page = useSelector(selectPage);
   const search = useSelector(selectSearch);
-  const isLoading=useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoading);
 
   /**
    * Loading list of patients
    */
   useEffect(() => {
     dispatch(loadListAsync());
-  }, []);
+  }, [dispatch]);
 
   /**
    * Handling searching on ItemList
    * @param {string} keyword
    */
   const handleSearchChange = (event) => {
-    const keyword=event.target.value;
-    dispatch(setSearch({search:keyword}));
+    const keyword = event.target.value;
+    dispatch(setSearch({ search: keyword }));
     dispatch(loadListAsync());
     console.log("Szukam!!!", keyword);
   };
-  
+
   /**
    * Handling page change on ItemList
    * @param {int} page
    */
   const handlePageChange = (page) => {
-    dispatch(setPage({page:page}));
+    dispatch(setPage({ page: page }));
     dispatch(loadListAsync());
     console.log("Zmieniam stronę!!!", page);
   };

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt,faBars, faUser, faUserAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSignOutAlt,
+  faBars,
+  faUserAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { logout } from "../Redux/Slices/User";
 import {
@@ -12,12 +15,18 @@ import {
   StyledMenuLinkToProfile,
   StyledMenuLogoutButton,
   StyledButtonContainer,
-  StyledMenuOpenButton
+  StyledMenuOpenButton,
 } from "./Styled";
+
+/**
+ * Menu component
+ * @param {object} props
+ * @returns {object} \<StyledMenuNav\>
+ */
 const Menu = (props) => {
   const dispatch = useDispatch();
 
-  const [isMenuExpanded, setIsMenuExpanded ] = useState(false);
+  const [isMenuExpanded, setIsMenuExpanded] = useState(false);
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -54,8 +63,8 @@ const Menu = (props) => {
         </StyledMenuItem>
       </StyledMenuList>
       <StyledButtonContainer>
-      <StyledMenuLinkToProfile to="/profile">
-      <FontAwesomeIcon icon={faUserAlt} />
+        <StyledMenuLinkToProfile to="/profile">
+          <FontAwesomeIcon icon={faUserAlt} />
         </StyledMenuLinkToProfile>
         <StyledMenuLogoutButton title="Wyloguj" onClick={logoutHandler}>
           <FontAwesomeIcon icon={faSignOutAlt} />

@@ -1,2 +1,5 @@
-export const PATIENT_MALE='0';
-export const PATIENT_FEMALE='1';
+/**
+ * Constants with sex mark
+ */
+export const PATIENT_MALE = "0";
+export const PATIENT_FEMALE = "1";
