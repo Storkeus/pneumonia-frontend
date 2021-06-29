@@ -17,11 +17,6 @@ import {
  * @returns
  */
 const LoginFormInput = (props) => {
-  const [inputValueHook, setInputValueHook] = useState("");
-
-  const inputValue = props.value ? props.value : inputValueHook;
-  const setInputValue = props.onChange ? props.onChange : setInputValueHook;
-
   return (
     <StyledLoginFormInputGroup>
       <StyledLoginFormInputLabel htmlFor={props.name}>
@@ -30,11 +25,9 @@ const LoginFormInput = (props) => {
       <StyledLoginFormInput
         name={props.name}
         id={props.name}
-        value={inputValue}
+        value={props.value}
         type={props.type ? props.type : "text"}
-        onChange={(e) => {
-          setInputValue(e.target.value);
-        }}
+        onChange={props.onChange ? props.onChange : null}
       />
       <span>{props.errorInfo}</span>
     </StyledLoginFormInputGroup>
