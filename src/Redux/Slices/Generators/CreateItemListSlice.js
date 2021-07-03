@@ -6,7 +6,7 @@ import { createSlice } from "@reduxjs/toolkit";
  * by connecting with url
  */
 
-const createItemListSlice = ({ sliceName, url }) => {
+const createItemListSlice = ({ sliceName, url, singleUrl }) => {
   const itemList = createSlice({
     name: sliceName,
     initialState: {
@@ -15,6 +15,7 @@ const createItemListSlice = ({ sliceName, url }) => {
       search: "",
       isLoading: false,
       loadingCounter: 0,
+      single: {},
     },
     reducers: {
       setList: (state, action) => {
@@ -24,6 +25,10 @@ const createItemListSlice = ({ sliceName, url }) => {
       setPage: (state, action) => {
         const { page } = action.payload;
         state.page = page;
+      },
+      setSingle: (state, action) => {
+        const single = action.payload;
+        state.single = single;
       },
       setSearch: (state, action) => {
         const { search } = action.payload;
@@ -40,7 +45,36 @@ const createItemListSlice = ({ sliceName, url }) => {
   });
 
   // eslint-disable-next-line no-unused-vars
-  const { setList, setPage, setSearch, setIsLoading } = itemList.actions;
+  const { setList, setPage, setSearch, setIsLoading, setSingle } =
+    itemList.actions;
+
+  /**
+   * Loads single position for example for edit form
+   */
+  const loadByIdAsync = () => async (dispatch, getState) => {
+    dispatch(setIsLoading(true));
+    try {
+      const connection = await fetch(singleUrl);
+      const result = await connection.text();
+
+      if (result) {
+        dispatch(
+          setSingle({
+            id: Math.floor(Math.random() * 1000),
+            name: "Jan",
+            surname: "Kowalski",
+            login: "jan.kowalski@example.com",
+          })
+        );
+      } else {
+        dispatch(setSingle({}));
+      }
+    } catch (error) {
+      console.log("test error");
+      dispatch(setSingle({}));
+    }
+    dispatch(setIsLoading(false));
+  };
 
   const loadListAsync = () => (dispatch, getState) => {
     console.log("Connecting to: " + url);
@@ -112,11 +146,17 @@ const createItemListSlice = ({ sliceName, url }) => {
     return state[sliceName].isLoading;
   };
 
+  const selectSingle = (state) => {
+    return state[sliceName].single;
+  };
+
   return {
     slice: itemList,
     loadListAsync: loadListAsync,
+    loadByIdAsync: loadByIdAsync,
     selectList: selectList,
     selectPage: selectPage,
+    selectSingle: selectSingle,
     selectSearch: selectSearch,
     selectIsLoading: selectIsLoading,
   };

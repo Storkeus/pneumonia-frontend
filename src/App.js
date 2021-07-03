@@ -7,6 +7,9 @@ import PasswordReset from "./Components/PasswordReset";
 import PatientList from "./Components/PatientList";
 import UserList from "./Components/UserList";
 import UploadImage from "./Components/UploadImage";
+import UserForm from "./Components/UserForm";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class App extends React.Component {
   render() {
@@ -32,6 +35,12 @@ class App extends React.Component {
           <Route path="/patients">
             <PatientList></PatientList>
           </Route>
+          <Route path="/users/edit/:id">
+            <UserForm></UserForm>
+          </Route>
+          <Route path="/users/add">
+            <UserForm></UserForm>
+          </Route>
           <Route path="/users">
             <UserList></UserList>
           </Route>
@@ -39,6 +48,7 @@ class App extends React.Component {
             <UploadImage></UploadImage>
           </Route>
         </Switch>
+        <ToastContainer pauseOnHover={false} position="bottom-right" />
       </Router>
     );
   }

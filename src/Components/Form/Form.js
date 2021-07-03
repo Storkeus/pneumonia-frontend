@@ -4,6 +4,7 @@ import {
   StyledForm,
   StyledFormTitle,
   StyledFormContent,
+  StyledFormButton,
 } from "./Styled";
 
 /**
@@ -20,6 +21,7 @@ const Form = (props) => {
       <StyledForm onSubmit={props.onSubmit}>
         <StyledFormTitle>{props.title}</StyledFormTitle>
         <StyledFormContent>{props.children}</StyledFormContent>
+        <StyledFormButton>Zapisz</StyledFormButton>
       </StyledForm>
     </StyledFormContainer>
   );

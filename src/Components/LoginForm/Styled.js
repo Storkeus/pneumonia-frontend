@@ -1,6 +1,6 @@
 import { COLOR_LIGHT, COLOR_SPECIAL, COLOR_DARK } from "../../Const";
 import styled from "styled-components";
-import FormInput from "../FormInput/FormInput";
+import Input from "../Input/Input";
 
 export const StyledLoginForm = styled.form`
   display: flex;
@@ -75,7 +75,7 @@ export const StyledLoginFormInputLabel = styled.label`
   margin-bottom: 1rem;
 `;
 
-export const StyledLoginFormInput = styled(FormInput)`
+export const StyledLoginFormInput = styled(Input)`
   height: 4rem;
   width: 100%;
   padding: 0.5rem;
