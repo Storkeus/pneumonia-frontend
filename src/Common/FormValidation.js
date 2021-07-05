@@ -275,3 +275,6 @@ export const checkIsValidEmail = (email) => {
   */
   return re.test(String(removeDiacritics(email)).toLowerCase());
 };
+
+export const MAIL_VALIDATION_ERROR = "Adres e-mail jest nieprawidłowy";
+export const REQUIRED_VALIDATION_ERROR = "To pole jest wymagane";

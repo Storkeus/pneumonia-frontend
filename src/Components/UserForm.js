@@ -5,9 +5,13 @@ import { loadByIdAsync, selectSingle } from "../Redux/Slices/UserList";
 import AuthAdmin from "./Auth/AuthAdmin";
 import Form from "./Form/Form";
 import FormInput from "./Form/FormInput";
-import { StyledFormInput } from "./Form/Styled";
 import Page from "./Page/Page";
 import { toast } from "react-toastify";
+import {
+  checkIsValidEmail,
+  MAIL_VALIDATION_ERROR,
+  REQUIRED_VALIDATION_ERROR,
+} from "../Common/FormValidation";
 
 /**
  * User edit form
@@ -30,9 +34,54 @@ const UserForm = (props) => {
 
   const isEdit = !!id;
 
+  const current = useSelector(selectSingle);
+  const { login = "", name = "", surname = "" } = current;
+
+  /**
+   * Loading list of patients
+   */
+  useEffect(() => {
+    if (id) {
+      dispatch(loadByIdAsync(id));
+      setEmail(login);
+      setFirstName(name);
+      setLastName(surname);
+    }
+  }, [dispatch, id, login, name, surname]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    toast.success("Zapisano dane użytkownika!");
+
+    setEmailErrorInfo("");
+    setFirstNameErrorInfo("");
+    setLastNameErrorInfo("");
+
+    try {
+      let isValidated = true;
+
+      if (!checkIsValidEmail(email)) {
+        setEmailErrorInfo(MAIL_VALIDATION_ERROR);
+        isValidated = false;
+      }
+
+      if (!firstName) {
+        setFirstNameErrorInfo(REQUIRED_VALIDATION_ERROR);
+        isValidated = false;
+      }
+
+      if (!lastName) {
+        setLastNameErrorInfo(REQUIRED_VALIDATION_ERROR);
+        isValidated = false;
+      }
+
+      if (!isValidated) {
+        throw new Error("Validation error");
+      }
+
+      toast.success("Zapisano dane użytkownika!");
+    } catch (exception) {
+      return false;
+    }
   };
 
   useEffect(() => {

@@ -3,6 +3,7 @@ import {
   StyledFormInput,
   StyledFormInputGroup,
   StyledFormInputLabel,
+  StyledFormInputError,
 } from "./Styled";
 
 /**
@@ -29,7 +30,7 @@ const FormInput = (props) => {
         type={props.type ? props.type : "text"}
         onChange={props.onChange ? props.onChange : null}
       />
-      <span>{props.errorInfo}</span>
+      <StyledFormInputError>{props.errorInfo}</StyledFormInputError>
     </StyledFormInputGroup>
   );
 };
