@@ -12,6 +12,7 @@ import {
 import AuthAdmin from "./Auth/AuthAdmin";
 import ItemList from "./ItemList/ItemList";
 import Page from "./Page/Page";
+import { useHistory } from "react-router";
 
 /**
  * User list page
@@ -24,6 +25,8 @@ const UserList = (props) => {
   const page = useSelector(selectPage);
   const search = useSelector(selectSearch);
   const isLoading = useSelector(selectIsLoading);
+
+  let history = useHistory();
 
   /**
    * Loading list of patients
@@ -55,8 +58,8 @@ const UserList = (props) => {
    * Handling edit action performed on ItemList
    * @param {int} id
    */
-  const handleActionEdit = (id) => {
-    console.log("EDYTUJĘ!!!", id);
+  const handleActionEdit = (id, history) => {
+    history.replace(`/users/edit/${id}`);
   };
 
   /**
@@ -87,7 +90,7 @@ const UserList = (props) => {
             {
               title: "Edytuj dane użytkownika",
               name: "Edytuj",
-              handler: handleActionEdit,
+              handler: (id) => handleActionEdit(id, history),
             },
             {
               title: "Usuń użytkownika",

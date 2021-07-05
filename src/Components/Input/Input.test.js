@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import FormInput from "./FormInput";
+import Input from "./Input";
 
 describe("Input", () => {
   /**
@@ -7,6 +7,6 @@ describe("Input", () => {
    */
 
   test("Input renders without crashing", () => {
-    render(<FormInput />);
+    render(<Input />);
   });
 });
