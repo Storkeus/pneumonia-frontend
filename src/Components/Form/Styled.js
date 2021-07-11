@@ -6,6 +6,7 @@ import {
   COLOR_SPECIAL,
 } from "../../Const";
 import Input from "../Input/Input";
+import Select from "../Select/Select";
 
 export const StyledFormContainer = styled.div`
   display: flex;
@@ -24,6 +25,20 @@ export const StyledFormContent = styled.div``;
 export const StyledFormTitle = styled.span``;
 
 export const StyledFormInput = styled(Input)`
+  padding: 0.7rem;
+  border: 1px solid ${COLOR_DARK};
+  background-color: ${COLOR_LIGHT};
+
+  width: 30rem;
+
+  &:focus-visible,
+  &:active {
+    border-color: ${COLOR_SPECIAL};
+    outline: none;
+  }
+`;
+
+export const StyledFormSelect = styled(Select)`
   padding: 0.7rem;
   border: 1px solid ${COLOR_DARK};
   background-color: ${COLOR_LIGHT};

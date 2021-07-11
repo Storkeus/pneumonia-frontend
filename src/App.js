@@ -8,6 +8,7 @@ import PatientList from "./Components/PatientList";
 import UserList from "./Components/UserList";
 import UploadImage from "./Components/UploadImage";
 import UserForm from "./Components/UserForm";
+import PatientForm from "./Components/PatientForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -31,6 +32,12 @@ class App extends React.Component {
           </Route>
           <Route path="/upload-image">
             <UploadImage></UploadImage>
+          </Route>
+          <Route path="/patients/edit/:id">
+            <PatientForm></PatientForm>
+          </Route>
+          <Route path="/patients/add">
+            <PatientForm></PatientForm>
           </Route>
           <Route path="/patients">
             <PatientList></PatientList>

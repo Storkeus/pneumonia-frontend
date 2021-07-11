@@ -5,6 +5,8 @@ export const {
   slice,
   loadListAsync,
   selectList,
+  loadByIdAsync,
+  selectSingle,
   selectPage,
   selectSearch,
   selectIsLoading,

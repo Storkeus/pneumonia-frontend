@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   loadListAsync,
   selectList,
@@ -24,6 +25,7 @@ const PatientList = (props) => {
   const page = useSelector(selectPage);
   const search = useSelector(selectSearch);
   const isLoading = useSelector(selectIsLoading);
+  const history = useHistory();
 
   /**
    * Loading list of patients
@@ -50,15 +52,14 @@ const PatientList = (props) => {
   const handlePageChange = (page) => {
     dispatch(setPage({ page: page }));
     dispatch(loadListAsync());
-    console.log("Zmieniam stronę!!!", page);
   };
 
   /**
    * Handling edit action performed on ItemList
    * @param {int} id
    */
-  const handleActionEdit = (id) => {
-    console.log("EDYTUJĘ!!!", id);
+  const handleActionEdit = (id, history) => {
+    history.push(`/patients/edit/${id}`);
   };
 
   /**
@@ -90,7 +91,7 @@ const PatientList = (props) => {
             {
               title: "Edytuj dane pacjenta",
               name: "Edytuj",
-              handler: handleActionEdit,
+              handler: (id) => handleActionEdit(id, history),
             },
             {
               title: "Usuń pacjenta",
