@@ -13,15 +13,17 @@ import {
  * @param {function} onSubmit form submit handler
  * @param {string} title form title
  * @param {object} props.children components with form controls
+ * @param {string} props.submitName text displayed on submit button
  * @returns \<StyledFormContainer\>
  */
 const Form = (props) => {
+  const { submitName = "Zapisz", onSubmit, title, children } = props;
   return (
     <StyledFormContainer>
-      <StyledForm onSubmit={props.onSubmit}>
-        <StyledFormTitle>{props.title}</StyledFormTitle>
-        <StyledFormContent>{props.children}</StyledFormContent>
-        <StyledFormButton>Zapisz</StyledFormButton>
+      <StyledForm onSubmit={onSubmit}>
+        <StyledFormTitle>{title}</StyledFormTitle>
+        <StyledFormContent>{children}</StyledFormContent>
+        <StyledFormButton>{submitName}</StyledFormButton>
       </StyledForm>
     </StyledFormContainer>
   );

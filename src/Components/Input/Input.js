@@ -9,23 +9,31 @@ import React, { useState } from "react";
  * @param {string} props.errorInfo validation error info
  * @returns
  */
-const FormInput = (props) => {
+const Input = (props) => {
   const [inputValueHook, setInputValueHook] = useState("");
 
   const inputValue = props.value ? props.value : inputValueHook;
   const setInputValue = props.onChange ? props.onChange : setInputValueHook;
+
+  const { innerRef = null, accept = null } = props;
 
   return (
     <input
       className={props.className}
       name={props.name}
       id={props.name}
+      ref={innerRef}
+      accept={accept}
       value={inputValue}
       type={props.type ? props.type : "text"}
       onChange={(e) => {
-        setInputValue(e.target.value);
+        if (props.type && props.type === "file") {
+          setInputValue(e);
+        } else {
+          setInputValue(e.target.value);
+        }
       }}
     />
   );
 };
-export default FormInput;
+export default Input;

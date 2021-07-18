@@ -27,6 +27,7 @@ const FormInput = (props) => {
         name={props.name}
         id={props.name}
         value={props.value}
+        accept={props.accept}
         type={props.type ? props.type : "text"}
         onChange={props.onChange ? props.onChange : null}
       />
