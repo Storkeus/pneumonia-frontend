@@ -5,8 +5,11 @@ import AuthAdmin from "./Auth/AuthAdmin";
 import Form from "./Form/Form";
 import FormInput from "./Form/FormInput";
 import Page from "./Page/Page";
+import { useHistory } from "react-router-dom";
 
 const UploadImage = (props) => {
+  const history = useHistory();
+
   const [image, setImage] = useState("");
   const dispatch = useDispatch();
 
@@ -16,7 +19,9 @@ const UploadImage = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(uploadImageAsync(image));
+    dispatch(uploadImageAsync(image)).then(() => {
+      history.push("/a");
+    });
   };
   return (
     <AuthAdmin>
