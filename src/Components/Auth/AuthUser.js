@@ -1,6 +1,6 @@
 import React from "react";
 import Auth from "./Auth";
-import { PERMISSIONS_USER } from "../../Common/Permissions";
+import { PERMISSIONS_ADMIN, PERMISSIONS_USER } from "../../Common/Permissions";
 
 /**
  * Redirects to /login if currently logged user doesn't have an user permissions.
@@ -11,7 +11,10 @@ import { PERMISSIONS_USER } from "../../Common/Permissions";
 const AuthUser = (props) => {
   return (
     <Auth
-      condition={(user) => !user || user.permissions !== PERMISSIONS_USER}
+      condition={(user) =>
+        !user ||
+        ![PERMISSIONS_USER, PERMISSIONS_ADMIN].includes(user.permissions)
+      }
       redirectOnFail="/login"
     >
       {props.children}
