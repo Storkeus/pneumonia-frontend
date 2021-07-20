@@ -13,7 +13,7 @@ export const {
 } = createItemListSlice({
   sliceName: SLICE_NAME,
   url: "/users",
-  singleUrl: "http://numbersapi.com/98",
+  singleUrl: "http://numbersapi.com/12",
 });
 
 export const { setList, setPage, setSearch } = slice.actions;

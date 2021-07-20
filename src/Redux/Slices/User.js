@@ -27,20 +27,27 @@ export const userSlice = createSlice({
 export const { loginSucess, logout } = userSlice.actions;
 
 export const loginAsync = (email, password) => async (dispatch) => {
-  const connection = await fetch("http://numbersapi.com/98", {
-    mode: "no-cors", // no-cors, *cors, same-origin
-  });
-  // eslint-disable-next-line no-unused-vars
-  const result = await connection.text();
+  try {
+    const connection = await fetch(
+      `${process.env.REACT_APP_API_URL}/api/token`,
+      {
+        mode: "cors", // no-cors, *cors, same-origin
+        method: "GET",
+        headers: {
+          Authorization: `Basic  ${btoa(`${email}:${password}`)}`,
+        },
+      }
+    );
+    // eslint-disable-next-line no-unused-vars
+    const { token } = await connection.json();
 
-  if (email === "bartosz.lyzwa@o2.pl" && password === "password") {
-    const token = "TEMP_TOKEN";
     const permissions = PERMISSIONS_ADMIN;
     dispatch(
       loginSucess({ email: email, token: token, permissions: permissions })
     );
+
     return true;
-  } else {
+  } catch {
     return false;
   }
 };
