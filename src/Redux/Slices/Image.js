@@ -1,19 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { readFile } from "../../Common/ReadFile";
 
-export const userSlice = createSlice({
+export const imageSlice = createSlice({
   name: "image",
   initialState: {
     src: "",
+    description: "",
+    bboxes: [],
   },
   reducers: {
     uploadImage: (state, action) => {
-      const { src } = action.payload;
+      const { src, description, bboxes } = action.payload;
       state.src = src;
+      state.description = description;
+      state.bboxes = bboxes;
+      console.log("ZAPISUJĘ!");
     },
   },
 });
 
-export const { uploadImage } = userSlice.actions;
+export const { uploadImage } = imageSlice.actions;
 
 export const uploadImageAsync = (image) => async (dispatch, getState) => {
   const {
@@ -21,29 +27,31 @@ export const uploadImageAsync = (image) => async (dispatch, getState) => {
   } = getState();
 
   const { size } = image;
-  const reader = new FileReader();
-  reader.onload = async function (event) {
-    const imageBinaryData = event.target.result;
-    console.log(imageBinaryData.length);
-    const connection = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/prediction`,
-      {
-        mode: "cors", // no-cors, *cors, same-origin
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/octet-stream",
-          "Content-Length": size,
-        },
-        body: imageBinaryData,
-      }
-    );
+  const imageBinaryData = await readFile(image);
 
-    const result = await connection.text();
-  };
-  reader.readAsArrayBuffer(image);
+  const connection = await fetch(
+    `${process.env.REACT_APP_API_URL}/api/prediction`,
+    {
+      mode: "cors", // no-cors, *cors, same-origin
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/octet-stream",
+        "Content-Length": size,
+      },
+      body: imageBinaryData,
+    }
+  );
+
+  const { src, description, bboxes } = await connection.json();
+
+  return dispatch(
+    uploadImage({ src: src, description: description, bboxes: bboxes })
+  );
 };
 
-export const selectUser = (state) => state.user;
+export const selectSrc = (state) => state.image.src;
+export const selectBBoxes = (state) => state.image.bboxes;
+export const selectDescription = (state) => state.image.description;
 
-export default userSlice.reducer;
+export default imageSlice.reducer;

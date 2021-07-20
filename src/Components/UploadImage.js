@@ -1,11 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { uploadImageAsync } from "../Redux/Slices/Image";
-import AuthAdmin from "./Auth/AuthAdmin";
 import Form from "./Form/Form";
 import FormInput from "./Form/FormInput";
 import Page from "./Page/Page";
 import { useHistory } from "react-router-dom";
+import AuthUser from "./Auth/AuthUser";
 
 const UploadImage = (props) => {
   const history = useHistory();
@@ -20,11 +20,11 @@ const UploadImage = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(uploadImageAsync(image)).then(() => {
-      history.push("/a");
+      history.push("/prediction");
     });
   };
   return (
-    <AuthAdmin>
+    <AuthUser>
       <Page title="Prześlij zdjęcie">
         <Form onSubmit={handleSubmit} submitName="Wyślij">
           <FormInput
@@ -36,7 +36,7 @@ const UploadImage = (props) => {
           />
         </Form>
       </Page>
-    </AuthAdmin>
+    </AuthUser>
   );
 };
 

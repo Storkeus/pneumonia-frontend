@@ -6,6 +6,7 @@ import Login from "./Components/Login";
 import PasswordReset from "./Components/PasswordReset";
 import PatientList from "./Components/PatientList";
 import UserList from "./Components/UserList";
+import Prediction from "./Components/Prediction";
 import UploadImage from "./Components/UploadImage";
 import UserForm from "./Components/UserForm";
 import PatientForm from "./Components/PatientForm";
@@ -50,6 +51,9 @@ class App extends React.Component {
           </Route>
           <Route path="/users">
             <UserList></UserList>
+          </Route>
+          <Route path="/prediction">
+            <Prediction></Prediction>
           </Route>
           <Route path="/">
             <UploadImage></UploadImage>
