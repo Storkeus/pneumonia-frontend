@@ -12,29 +12,14 @@ import {
  */
 const PredictionImage = ({ src, alt = "", bboxes = [] }) => {
   const [ratio, setRatio] = useState(1);
-  const [isLoaded, setIsLoaded] = useState(false);
   const imageRef = useRef();
 
-  useEffect(() => {
-    const handleWindowResize = () => {
-      setRatio(imageRef.current.offsetWidth / imageRef.current.naturalWidth);
-    };
-
-    if (isLoaded) {
-      setRatio(imageRef.current.offsetWidth / imageRef.current.naturalWidth);
-    }
-
-    window.addEventListener("resize", handleWindowResize);
-    return (_) => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, [isLoaded]);
 
   return (
     <StyledPredictionImageContainer>
       <StyledPredictionImage
         onLoad={() => {
-          setIsLoaded(true);
+          setRatio(imageRef.current.offsetWidth / imageRef.current.naturalWidth);
         }}
         ref={imageRef}
         src={src}

@@ -29,7 +29,6 @@ const UploadImage = (props) => {
         <Form onSubmit={handleSubmit} submitName="Wyślij">
           <FormInput
             onChange={handleImageChange}
-            title="Zdjęcie"
             type="file"
             name="plik"
             accept="*/dicom,.dcm, image/dcm, */dcm, .dicom"

@@ -7,6 +7,7 @@ import PasswordReset from "./Components/PasswordReset";
 import PatientList from "./Components/PatientList";
 import UserList from "./Components/UserList";
 import Prediction from "./Components/Prediction";
+import Correction from "./Components/Correction";
 import UploadImage from "./Components/UploadImage";
 import UserForm from "./Components/UserForm";
 import PatientForm from "./Components/PatientForm";
@@ -26,7 +27,7 @@ class App extends React.Component {
         </Helmet>
         <Switch>
           <Route path="/login">
-            <Login>test</Login>
+            <Login></Login>
           </Route>
           <Route path="/password-reset">
             <PasswordReset></PasswordReset>
@@ -54,6 +55,9 @@ class App extends React.Component {
           </Route>
           <Route path="/prediction">
             <Prediction></Prediction>
+          </Route>
+          <Route path="/correction">
+            <Correction></Correction>
           </Route>
           <Route path="/">
             <UploadImage></UploadImage>
