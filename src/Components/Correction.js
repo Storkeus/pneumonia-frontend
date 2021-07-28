@@ -19,7 +19,11 @@ const Prediction = (props) => {
   const dispatch = useDispatch();
   const src = useSelector(selectSrc);
   const description = useSelector(selectDescription);
-  const [bboxes,setBboxes] = useState([]);
+  const [bboxes, setBboxes] = useState([]);
+
+  const resetBBoxes = () => {
+    setBboxes([]);
+  }
 
   return (
     <AuthUser>
@@ -32,8 +36,9 @@ const Prediction = (props) => {
               src={`${process.env.REACT_APP_API_URL}/${src}`}
               alt=""
             />
+            <button onClick={resetBBoxes}>Usuń zaznaczone obszary</button>
             <p>{description}</p>
-    
+
           </div>
         </Page>
       ) : (

@@ -27,8 +27,9 @@ const UploadImage = (props) => {
     <AuthUser>
       <Page title="Prześlij zdjęcie">
         <Form onSubmit={handleSubmit} submitName="Wyślij">
-          <FormInput
+          <input
             onChange={handleImageChange}
+            title="Prześlij zdjęcie"
             type="file"
             name="plik"
             accept="*/dicom,.dcm, image/dcm, */dcm, .dicom"
