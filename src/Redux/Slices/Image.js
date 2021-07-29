@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import APIConnection from "../../Common/APIConnection";
 import { readFile } from "../../Common/ReadFile";
 
 export const imageSlice = createSlice({
@@ -29,21 +30,9 @@ export const uploadImageAsync = (image) => async (dispatch, getState) => {
   const { size } = image;
   const imageBinaryData = await readFile(image);
 
-  const connection = await fetch(
-    `${process.env.REACT_APP_API_URL}/api/prediction`,
-    {
-      mode: "cors", // no-cors, *cors, same-origin
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/octet-stream",
-        "Content-Length": size,
-      },
-      body: imageBinaryData,
-    }
-  );
+  const connection = await new APIConnection(`${process.env.REACT_APP_API_URL}/api/prediction`).setBody(imageBinaryData, 'binary').addHeader('Content-Length', size).authorizeJWT(token).connectPOST();
 
-  const { src, description, bboxes } = await connection.json();
+  const { src, description, bboxes } = connection;
 
   return dispatch(
     uploadImage({ src: src, description: description, bboxes: bboxes })

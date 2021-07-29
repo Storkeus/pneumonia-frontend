@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import APIConnection from "../../Common/APIConnection";
 import { PERMISSIONS_ADMIN } from "../../Common/Permissions";
 
 export const userSlice = createSlice({
@@ -28,18 +29,9 @@ export const { loginSucess, logout } = userSlice.actions;
 
 export const loginAsync = (email, password) => async (dispatch) => {
   try {
-    const connection = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/token`,
-      {
-        mode: "cors", // no-cors, *cors, same-origin
-        method: "GET",
-        headers: {
-          Authorization: `Basic  ${btoa(`${email}:${password}`)}`,
-        },
-      }
-    );
-    // eslint-disable-next-line no-unused-vars
-    const { token } = await connection.json();
+
+    const connection = await new APIConnection(`${process.env.REACT_APP_API_URL}/api/token`).authorizeBasic(email, password).connectPOST();
+    const { token } = connection;
 
     const permissions = PERMISSIONS_ADMIN;
     dispatch(
