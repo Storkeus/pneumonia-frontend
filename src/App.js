@@ -9,6 +9,7 @@ import UserList from "./Components/UserList";
 import Prediction from "./Components/Prediction";
 import Correction from "./Components/Correction";
 import UploadImage from "./Components/UploadImage";
+import UploadModel from "./Components/UploadModel";
 import UserForm from "./Components/UserForm";
 import PatientForm from "./Components/PatientForm";
 import { ToastContainer } from "react-toastify";
@@ -58,6 +59,9 @@ class App extends React.Component {
           </Route>
           <Route path="/correction">
             <Correction></Correction>
+          </Route>
+          <Route path="/update-model">
+            <UploadModel></UploadModel>
           </Route>
           <Route path="/">
             <UploadImage></UploadImage>
