@@ -9,6 +9,7 @@ import {
 } from "../Redux/Slices/Image";
 import PredictionImage from "./PredictionImage/PredictionImage";
 import { Link, Redirect } from "react-router-dom";
+import { StyledLink } from "./StyledLink";
 
 /**
  * Prediction result page
@@ -26,13 +27,13 @@ const Prediction = (props) => {
       {src ? (
         <Page title="Wynik predykcji">
           <div style={{ textAlign: "center" }}>
+            <p>{description}</p>
             <PredictionImage
               bboxes={bboxes}
               src={`${process.env.REACT_APP_API_URL}/${src}`}
               alt=""
             />
-            <p>{description}</p>
-            <Link to="/correction"><button>Popraw predykcję</button></Link>
+            <StyledLink to="/correction">Popraw predykcję</StyledLink>
           </div>
         </Page>
       ) : (

@@ -71,8 +71,8 @@ export const StyledFormInputLabel = styled.label`
   text-align: right;
 `;
 
+
 export const StyledFormButton = styled.button`
-  margin: 2rem 0 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,7 +83,26 @@ export const StyledFormButton = styled.button`
   font-size: 2.2rem;
   border: none;
   padding: 0.5rem 1.3rem;
-  margin: 3.5rem 0 0 auto;
+
+  &:hover{
+    curor:pointer;
+  }
+
+  margin-top:3.5rem;
+  margin-bottom:3.5rem;
+
+
+`;
+
+
+export const StyledFormButtonCentered = styled(StyledFormButton)`
+  margin-left:auto;
+  margin-right:auto;
+`;
+
+
+export const StyledFormButtonSecondary = styled(StyledFormButton)`
+background-color:${COLOR_DARK}
 `;
 
 export const StyledFormInputError = styled.div`
@@ -91,4 +110,22 @@ export const StyledFormInputError = styled.div`
   color: red;
   width: 100%;
   text-align: right;
+`;
+
+
+export const StyledFormButtonHorizontalContainer = styled.div`
+display:flex;
+align-items:center;
+justify-content:center;
+flex-wrap:wrap;
+gap:1rem;
+`;
+
+export const StyledFormInputList = styled.ul`
+padding:0;
+list-style:none;
+`;
+
+export const StyledFormInputListItem = styled.li`
+padding:0.5rem;
 `;

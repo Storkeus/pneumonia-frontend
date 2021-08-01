@@ -55,8 +55,7 @@ const PredictionCorrection = ({ src, bboxes, alt, setBboxes }) => {
 
 
     const newBboxes = bboxes;
-    newBboxes.push({ x: x, y: y, width: width, height: height })
-    console.log({ x: x, y: y, width: width, height: height });
+    newBboxes.push({ x: x / ratio, y: y / ratio, width: width / ratio, height: height / ratio })
     setBboxes(newBboxes);
 
     setCurrentAreaStartPosition({ x: false, y: false })
@@ -78,7 +77,7 @@ const PredictionCorrection = ({ src, bboxes, alt, setBboxes }) => {
         return (
           <StyledPredictionCorrectionBox
             key={key}
-            style={{ left: x, top: y, width: width, height: height }}
+            style={{ left: x * ratio, top: y * ratio, width: width * ratio, height: height * ratio }}
             isRemovable={true}
             handleRemove={null}
           />

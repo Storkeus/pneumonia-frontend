@@ -4,12 +4,40 @@ import FormInput from "./Form/FormInput";
 import Page from "./Page/Page";
 import { useHistory } from "react-router-dom";
 import AuthUser from "./Auth/AuthUser";
+import { useSelector } from "react-redux";
+import { selectUser } from "../Redux/Slices/User";
+import { readFile } from "../Common/ReadFile";
+import APIConnection from "../Common/APIConnection";
 
 const UploadModel = (props) => {
   const history = useHistory();
+  const [file, setFile] = useState(null);
 
-  const handleSubmit = (event) => {
+  const { token } = useSelector(selectUser);
+
+  const handleFileChange = (event) => {
+    try {
+
+      const uploadedFile = event.target.files[0];
+      setFile(uploadedFile);
+
+    } catch (error) {
+      return false;
+    }
+
+
+  }
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+
+
+    const { size } = file;
+    const fileBinaryData = await readFile(file);
+
+    await new APIConnection(`${process.env.REACT_APP_API_URL}/api/update-model`).setBody(fileBinaryData, 'binary').addHeader('Content-Length', size).authorizeJWT(token).connectPOST();
+
 
   };
   return (
@@ -23,6 +51,7 @@ const UploadModel = (props) => {
             type="file"
             name="plik"
             accept=".pkl"
+            onChange={handleFileChange}
           />
 
         </Form>
