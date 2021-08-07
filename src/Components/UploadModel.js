@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Form from "./Form/Form";
-import FormInput from "./Form/FormInput";
 import Page from "./Page/Page";
-import { useHistory } from "react-router-dom";
 import AuthUser from "./Auth/AuthUser";
 import { useSelector } from "react-redux";
 import { selectUser } from "../Redux/Slices/User";
@@ -10,7 +8,6 @@ import { readFile } from "../Common/ReadFile";
 import APIConnection from "../Common/APIConnection";
 
 const UploadModel = (props) => {
-  const history = useHistory();
   const [file, setFile] = useState(null);
 
   const { token } = useSelector(selectUser);

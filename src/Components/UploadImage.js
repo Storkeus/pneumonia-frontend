@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { uploadImageAsync } from "../Redux/Slices/Image";
 import Form from "./Form/Form";
-import FormInput from "./Form/FormInput";
 import Page from "./Page/Page";
 import { useHistory } from "react-router-dom";
 import AuthUser from "./Auth/AuthUser";

@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import AuthUser from "./Auth/AuthUser";
 import Page from "./Page/Page";
 import {
@@ -8,7 +8,7 @@ import {
   selectDescription,
 } from "../Redux/Slices/Image";
 import PredictionImage from "./PredictionImage/PredictionImage";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { StyledLink } from "./StyledLink";
 
 /**
@@ -17,7 +17,6 @@ import { StyledLink } from "./StyledLink";
  * @returns {object} <AuthUser\>
  */
 const Prediction = (props) => {
-  const dispatch = useDispatch();
   const src = useSelector(selectSrc);
   const description = useSelector(selectDescription);
   const bboxes = useSelector(selectBBoxes);

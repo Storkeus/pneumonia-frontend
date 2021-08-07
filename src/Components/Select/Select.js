@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 /**
  * Select component
  * @param {object} props
@@ -9,16 +9,14 @@ import React, { useState } from "react";
  * @returns
  */
 const Select = (props) => {
-  const [inputValueHook, setInputValueHook] = useState("");
 
-  const inputValue = props.value ? props.value : inputValueHook;
-  const setSelectValue = props.onChange ? props.onChange : setInputValueHook;
+  const setSelectValue = props.onChange;
   const options = props.options
     ? props.options
     : [
-        { name: "Tak", value: "1" },
-        { name: "Nie", value: "0" },
-      ];
+      { name: "Tak", value: "1" },
+      { name: "Nie", value: "0" },
+    ];
   console.log(props);
 
   return (

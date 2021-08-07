@@ -13,11 +13,11 @@ export default class APIConnection {
     }
 
     setBody(body, typeOfBody = 'json') {
-        if (typeOfBody == 'json') {
+        if (typeOfBody === 'json') {
             body = JSON.stringify(body);
         }
 
-        if (typeOfBody == 'binary') {
+        if (typeOfBody === 'binary') {
             this.addHeader("Content-Type", "application/octet-stream");
         }
         this.body = body;
