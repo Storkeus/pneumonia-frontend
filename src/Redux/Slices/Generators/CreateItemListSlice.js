@@ -70,20 +70,17 @@ const createItemListSlice = ({ sliceName, url, singleUrl }) => {
         dispatch(setSingle({}));
       }
     } catch (error) {
-      console.log("test error");
       dispatch(setSingle({}));
     }
     dispatch(setIsLoading(false));
   };
 
   const loadListAsync = () => (dispatch, getState) => {
-    console.log("Connecting to: " + url);
     dispatch(setIsLoading(true));
     const { loadingCounter: initialLoadingCounter } = getState()[sliceName];
     setTimeout(() => {
       const { loadingCounter: finalLoadingCounter } = getState()[sliceName];
 
-      console.log(initialLoadingCounter, finalLoadingCounter, getState());
       if (initialLoadingCounter < finalLoadingCounter) {
         return;
       }

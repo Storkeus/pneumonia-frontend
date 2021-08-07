@@ -15,7 +15,6 @@ export const imageSlice = createSlice({
       state.src = src;
       state.description = description;
       state.bboxes = bboxes;
-      console.log("ZAPISUJĘ!");
     },
   },
 });

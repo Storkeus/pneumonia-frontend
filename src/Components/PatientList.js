@@ -42,7 +42,6 @@ const PatientList = (props) => {
     const keyword = event.target.value;
     dispatch(setSearch({ search: keyword }));
     dispatch(loadListAsync());
-    console.log("Szukam!!!", keyword);
   };
 
   /**
@@ -67,7 +66,6 @@ const PatientList = (props) => {
    * @param {int} id
    */
   const handleActionRemove = (id) => {
-    console.log("USUWAM!!!", id);
   };
 
   return (

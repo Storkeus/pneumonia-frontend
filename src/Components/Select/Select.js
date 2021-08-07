@@ -17,7 +17,6 @@ const Select = (props) => {
       { name: "Tak", value: "1" },
       { name: "Nie", value: "0" },
     ];
-  console.log(props);
 
   return (
     <select

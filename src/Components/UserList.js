@@ -67,7 +67,6 @@ const UserList = (props) => {
    * @param {int} id
    */
   const handleActionRemove = (id) => {
-    console.log("USUWAM!!!", id);
   };
 
   return (

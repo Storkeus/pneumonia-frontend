@@ -7,6 +7,7 @@ import LoginFormButton from "./LoginFormButton";
 import LoginFormLinks from "./LoginFormLinks";
 import LoginFormInput from "./LoginFormInput";
 import Store from "../../Redux/Store";
+import { act } from "react-dom/test-utils";
 
 describe("LoginForm", () => {
   /**
@@ -41,13 +42,16 @@ describe("LoginForm", () => {
         </MemoryRouter>
       </Provider>
     );
-    const eMailInput = screen.getByLabelText("Adres e-mail:");
-    fireEvent.change(eMailInput, {
-      target: { value: "not a valid e-mail" },
-    });
+    act(() => {
+      const eMailInput = screen.getByLabelText("Adres e-mail:");
+      fireEvent.change(eMailInput, {
+        target: { value: "not a valid e-mail" },
+      });
 
-    const button = document.querySelector("button");
-    fireEvent.click(button);
+      const button = document.querySelector("button");
+      fireEvent.click(button);
+    })
+
 
     const validationError = screen.getByText(
       /Adres e-mail jest nieprawidłowy/i
@@ -63,13 +67,17 @@ describe("LoginForm", () => {
         </MemoryRouter>
       </Provider>
     );
-    const eMailInput = screen.getByLabelText("Adres e-mail:");
-    fireEvent.change(eMailInput, {
-      target: { value: "żółć@żółć.com" },
-    });
 
-    const button = document.querySelector("button");
-    fireEvent.click(button);
+    act(() => {
+
+      const eMailInput = screen.getByLabelText("Adres e-mail:");
+      fireEvent.change(eMailInput, {
+        target: { value: "żółć@żółć.com" },
+      });
+      const button = document.querySelector("button");
+      fireEvent.click(button);
+    })
+
 
     const validationError = screen.queryByText(
       /Adres e-mail jest nieprawidłowy/i

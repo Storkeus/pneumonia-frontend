@@ -9,7 +9,6 @@ import imageReducer from "./Slices/Image";
 import { loadState, saveState } from "../Common/Storage";
 
 const applicationState = loadState();
-console.log(applicationState);
 const store = configureStore({
   reducer: {
     user: userReducer,
