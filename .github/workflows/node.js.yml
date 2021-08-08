@@ -28,12 +28,13 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npm run build --if-present
+      env:
+          REACT_APP_API_URL: ''
     - run: npm test
     - name: Push build to backend repository
       uses: dmnemec/copy_file_to_another_repo_action@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        REACT_APP_API_URL: ''
       with:
         source_file: 'build'
         destination_repo: 'storkeus/pneumonia-backend'
