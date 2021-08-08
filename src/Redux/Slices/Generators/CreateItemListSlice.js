@@ -53,24 +53,27 @@ const createItemListSlice = ({ sliceName, url, singleUrl }) => {
   /**
    * Loads single position for example for edit form
    */
-  const loadByIdAsync = () => async (dispatch, getState) => {
+  const loadByIdAsync = (id) => async (dispatch, getState) => {
     dispatch(setIsLoading(true));
     try {
-      const connection = await fetch(singleUrl);
-      const result = await connection.text();
+      const connectionResult = await new APIConnection(`${process.env.REACT_APP_API_URL}${singleUrl}/${id}`).authorizeJWT(getState()['user'].token).connectGET();
 
-      if (result) {
-        dispatch(
-          setSingle({
-            id: Math.floor(Math.random() * 1000),
-            name: "Jan",
-            surname: "Kowalski",
-            login: "jan.kowalski@example.com",
-          })
-        );
-      } else {
-        dispatch(setSingle({}));
+      const { id, name, surname, login } = connectionResult;
+
+      if (!connectionResult) {
+        throw new Error('No connection result');
       }
+
+      dispatch(
+        setSingle({
+          id: id,
+          name: name,
+          surname: surname,
+          login: login,
+        })
+      );
+
+
     } catch (error) {
       dispatch(setSingle({}));
     }
