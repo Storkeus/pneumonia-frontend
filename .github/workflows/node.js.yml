@@ -39,4 +39,4 @@ jobs:
         destination_folder: 'build'
         user_email: 'bartosz.lyzwa@o2.pl'
         user_name: 'storkeus'
-        commit_message: 'Update of front form $GITHUB_REF'
+        commit_message: Update of front from $GITHUB_REF
