@@ -30,14 +30,13 @@ jobs:
     - run: npm run build --if-present
     - run: npm test
     - name: Push build to backend repository
-      uses: cpina/github-action-push-to-another-repository@main
+      uses: dmnemec/copy_file_to_another_repo_action@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source-directory: 'build'
-        destination-github-username: 'storkeus'
-        destination-repository-name: 'pneumonia-backend'
-        user-email: bartosz.lyzwa@o2.pl
-        commit-message: Update of front form $GITHUB_REF
-        target-branch: main
-
+        source_file: 'build'
+        destination_repo: 'storkeus/pneumonia-backend'
+        destination_folder: 'build'
+        user_email: 'bartosz.lyzwa@o2.pl'
+        user_name: 'storkeus'
+        commit_message: 'Update of front form $GITHUB_REF'
