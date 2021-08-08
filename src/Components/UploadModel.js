@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../Redux/Slices/User";
 import { readFile } from "../Common/ReadFile";
 import APIConnection from "../Common/APIConnection";
+import { toast } from "react-toastify";
 
 const UploadModel = (props) => {
   const [file, setFile] = useState(null);
@@ -34,7 +35,14 @@ const UploadModel = (props) => {
     const { size } = file;
     const fileBinaryData = await readFile(file);
 
-    await new APIConnection(`${process.env.REACT_APP_API_URL}/api/update-model`).setBody(fileBinaryData, 'binary').addHeader('Content-Length', size).authorizeJWT(token).connectPOST();
+    try {
+
+      await new APIConnection(`${process.env.REACT_APP_API_URL}/api/update-model`).setBody(fileBinaryData, 'binary').addHeader('Content-Length', size).authorizeJWT(token).connectPOST();
+      toast.success("Zaktualizowano model.");
+      setIsLoading(false);
+    } catch (error) {
+      toast.error("Wystąpił błąd. Nie udało zię zaktualizować modelu.");
+    }
 
 
   };
