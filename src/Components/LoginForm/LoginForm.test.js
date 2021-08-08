@@ -76,12 +76,12 @@ describe("LoginForm", () => {
       });
       const button = document.querySelector("button");
       fireEvent.click(button);
+      const validationError = screen.queryByText(
+        /Adres e-mail jest nieprawidłowy/i
+      );
+      expect(validationError).toBeNull();
     })
 
 
-    const validationError = screen.queryByText(
-      /Adres e-mail jest nieprawidłowy/i
-    );
-    expect(validationError).toBeNull();
   });
 });

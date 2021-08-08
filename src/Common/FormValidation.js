@@ -255,7 +255,7 @@ for (var i = 0; i < defaultDiacriticsRemovalMap.length; i++) {
  * @param {string} str
  * @returns {string}
  */
-function removeDiacritics(str) {
+export function removeDiacritics(str) {
   return str.replace(/[^\u0100-\u017F]|[^\u0180-\u024F]/g, function (a) {
     return diacriticsMap[a] || a;
   });
@@ -268,9 +268,9 @@ function removeDiacritics(str) {
  */
 export const checkIsValidEmail = (email) => {
   const re =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9аАбБвВгГдДеЕёЁжЖзЗиИйЙкКлЛмМнНоОпПрРсСтТуУфФхХцЦчЧшШщЩъЪыЫьЬэЭюЮяЯΑ-Ωα-ωίϊΐόάέύϋΰήώ]+\.)+[a-zA-Z]{2,}))$/;
   /* 
-    Since domain names can contain diactric characters (https://eurid.eu/en/register-a-eu-domain/domain-names-with-special-characters-idns/)
+    Since domain names can contain diactric characters (v)
     there can be a valid e-mail containing them too, thus removing diactrics ensures that such addresses will be recognized as valid.
   */
   return re.test(String(removeDiacritics(email)).toLowerCase());

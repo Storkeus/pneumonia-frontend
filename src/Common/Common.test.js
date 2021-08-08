@@ -1,4 +1,4 @@
-import { checkIsValidEmail } from "./FormValidation";
+import { checkIsValidEmail, removeDiacritics } from "./FormValidation";
 
 describe("checkIsValidEmail", () => {
   test("empty string is false", () => {
