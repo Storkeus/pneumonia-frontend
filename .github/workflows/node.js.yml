@@ -33,6 +33,7 @@ jobs:
       uses: dmnemec/copy_file_to_another_repo_action@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        REACT_APP_API_URL: ''
       with:
         source_file: 'build'
         destination_repo: 'storkeus/pneumonia-backend'
