@@ -10,7 +10,7 @@ export const {
   selectPage,
   selectSearch,
   selectIsLoading,
-} = createItemListSlice({ sliceName: SLICE_NAME, url: "/patients" });
+} = createItemListSlice({ sliceName: SLICE_NAME, url: "/api/patients" });
 
 export const { setList, setPage, setSearch } = slice.actions;
 

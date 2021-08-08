@@ -12,8 +12,8 @@ export const {
   selectIsLoading,
 } = createItemListSlice({
   sliceName: SLICE_NAME,
-  url: "/users",
-  singleUrl: "http://numbersapi.com/12",
+  url: "/api/users",
+  singleUrl: "/api/user",
 });
 
 export const { setList, setPage, setSearch } = slice.actions;

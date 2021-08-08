@@ -1,5 +1,7 @@
-import { PATIENT_FEMALE, PATIENT_MALE } from "../../../Common/PatientConst";
+// import { PATIENT_FEMALE, PATIENT_MALE } from "../../../Common/PatientConst";
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
+import APIConnection from "../../../Common/APIConnection";
 
 /**
  * Returns Redux slice with sliceName that handles basic item list operations
@@ -75,56 +77,27 @@ const createItemListSlice = ({ sliceName, url, singleUrl }) => {
     dispatch(setIsLoading(false));
   };
 
-  const loadListAsync = () => (dispatch, getState) => {
+  const loadListAsync = () => async (dispatch, getState) => {
     dispatch(setIsLoading(true));
-    const { loadingCounter: initialLoadingCounter } = getState()[sliceName];
-    setTimeout(() => {
+    const { loadingCounter: initialLoadingCounter, page } = getState()[sliceName];
+
+    try {
+
+      const connectionResult = await new APIConnection(`${process.env.REACT_APP_API_URL}${url}?page=${page}`).authorizeJWT(getState()['user'].token).connectGET();
       const { loadingCounter: finalLoadingCounter } = getState()[sliceName];
 
       if (initialLoadingCounter < finalLoadingCounter) {
         return;
       }
 
-      let list;
+      dispatch(setList(connectionResult ? connectionResult : []));
+    } catch (error) {
+      toast.error('Błąd połączenia.');
+    }
 
-      if (url === "/patients") {
-        list = [
-          {
-            id: Math.floor(Math.random() * 1000),
-            name: "Jan",
-            surname: "Kowalski",
-            age: 45,
-            sex: PATIENT_MALE,
-          },
-          {
-            id: Math.floor(Math.random() * 1000),
-            name: "Janinia",
-            surname: "Kowalska",
-            age: 34,
-            sex: PATIENT_FEMALE,
-          },
-        ];
-      }
+    dispatch(setIsLoading(false));
 
-      if (url === "/users") {
-        list = [
-          {
-            id: Math.floor(Math.random() * 1000),
-            name: "Jan",
-            surname: "Kowalski",
-            login: "jan.kowalski@example.com",
-          },
-          {
-            id: Math.floor(Math.random() * 1000),
-            name: "Janinia",
-            surname: "Kowalska",
-            login: "janina.kowalska@example.com",
-          },
-        ];
-      }
-      dispatch(setList(list));
-      dispatch(setIsLoading(false));
-    }, 1000);
+
   };
 
   const selectList = (state) => {
