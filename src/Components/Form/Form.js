@@ -6,6 +6,8 @@ import {
   StyledFormContent,
   StyledFormButtonCentered,
 } from "./Styled";
+import Loading from "../Loading/Loading";
+
 
 /**
  * Renders form
@@ -21,9 +23,13 @@ const Form = (props) => {
   return (
     <StyledFormContainer>
       <StyledForm onSubmit={onSubmit}>
-        <StyledFormTitle>{title}</StyledFormTitle>
-        <StyledFormContent>{children}</StyledFormContent>
-        <StyledFormButtonCentered>{submitName}</StyledFormButtonCentered>
+
+        {props.isLoading
+          ? <Loading />
+          : <><StyledFormTitle>{title}</StyledFormTitle>
+            <StyledFormContent>{children}</StyledFormContent>
+            <StyledFormButtonCentered>{submitName}</StyledFormButtonCentered></>}
+
       </StyledForm>
     </StyledFormContainer>
   );

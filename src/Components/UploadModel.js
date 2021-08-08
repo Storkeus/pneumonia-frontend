@@ -9,7 +9,7 @@ import APIConnection from "../Common/APIConnection";
 
 const UploadModel = (props) => {
   const [file, setFile] = useState(null);
-
+  const [isLoading, setIsLoading] = useState(false);
   const { token } = useSelector(selectUser);
 
   const handleFileChange = (event) => {
@@ -27,6 +27,7 @@ const UploadModel = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
 
 
 
@@ -40,7 +41,7 @@ const UploadModel = (props) => {
   return (
     <AuthUser>
       <Page title="Prześlij model">
-        <Form onSubmit={handleSubmit} submitName="Wyślij">
+        <Form isLoading={isLoading} onSubmit={handleSubmit} submitName="Wyślij">
           <label htmlFor="UpdateModelInput">Prześlij nowy model w formacie .pkl </label>
           <input
             id="UpdateModelInput"

@@ -6,8 +6,11 @@ import Page from "./Page/Page";
 import { useHistory } from "react-router-dom";
 import AuthUser from "./Auth/AuthUser";
 
+
 const UploadImage = (props) => {
   const history = useHistory();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [image, setImage] = useState("");
   const dispatch = useDispatch();
@@ -18,6 +21,7 @@ const UploadImage = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setIsLoading(true);
     dispatch(uploadImageAsync(image)).then(() => {
       history.push("/prediction");
     });
@@ -25,7 +29,8 @@ const UploadImage = (props) => {
   return (
     <AuthUser>
       <Page title="Prześlij zdjęcie">
-        <Form onSubmit={handleSubmit} submitName="Wyślij">
+
+        <Form onSubmit={handleSubmit} isLoading={isLoading} submitName="Wyślij">
           <input
             onChange={handleImageChange}
             title="Prześlij zdjęcie"
@@ -34,6 +39,7 @@ const UploadImage = (props) => {
             accept="*/dicom,.dcm, image/dcm, */dcm, .dicom"
           />
         </Form>
+
       </Page>
     </AuthUser>
   );
