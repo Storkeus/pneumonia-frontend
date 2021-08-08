@@ -32,11 +32,12 @@ jobs:
           REACT_APP_API_URL: ''
     - run: npm test
     - name: Push build to backend repository
-      uses: dmnemec/copy_file_to_another_repo_action@main
+      uses: storkeus/copy_file_to_another_repo_action@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
         source_file: 'build'
+        remove_existing: true
         destination_repo: 'storkeus/pneumonia-backend'
         destination_folder: ''
         user_email: 'bartosz.lyzwa@o2.pl'
