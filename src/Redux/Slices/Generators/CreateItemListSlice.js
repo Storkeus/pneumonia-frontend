@@ -58,7 +58,7 @@ const createItemListSlice = ({ sliceName, url, singleUrl }) => {
     try {
       const connectionResult = await new APIConnection(`${process.env.REACT_APP_API_URL}${singleUrl}/${id}`).authorizeJWT(getState()['user'].token).connectGET();
 
-      const { id, name, surname, login } = connectionResult;
+      const { name, surname, login } = connectionResult;
 
       if (!connectionResult) {
         throw new Error('No connection result');
