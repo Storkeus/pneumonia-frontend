@@ -5,9 +5,12 @@ import Form from "./Form/Form";
 import Page from "./Page/Page";
 import { useHistory } from "react-router-dom";
 import AuthUser from "./Auth/AuthUser";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 
 const UploadImage = (props) => {
+
+  const { id: userId } = useParams();
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +25,7 @@ const UploadImage = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsLoading(true);
-    dispatch(uploadImageAsync(image)).then(() => {
+    dispatch(uploadImageAsync(userId, image)).then(() => {
       history.push("/prediction");
     });
   };
@@ -30,7 +33,7 @@ const UploadImage = (props) => {
     <AuthUser>
       <Page title="Prześlij zdjęcie">
 
-        <Form onSubmit={handleSubmit} isLoading={isLoading} submitName="Wyślij">
+        <Form onSubmit={handleSubmit} isLoading={isLoading} submitName="Analizuj zdjęcie">
           <input
             onChange={handleImageChange}
             title="Prześlij zdjęcie"

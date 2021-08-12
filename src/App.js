@@ -33,7 +33,7 @@ class App extends React.Component {
           <Route path="/password-reset">
             <PasswordReset></PasswordReset>
           </Route>
-          <Route path="/upload-image">
+          <Route path="/patients/:id/upload-image">
             <UploadImage></UploadImage>
           </Route>
           <Route path="/patients/edit/:id">

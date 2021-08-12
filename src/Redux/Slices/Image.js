@@ -21,7 +21,7 @@ export const imageSlice = createSlice({
 
 export const { uploadImage } = imageSlice.actions;
 
-export const uploadImageAsync = (image) => async (dispatch, getState) => {
+export const uploadImageAsync = (userId, image) => async (dispatch, getState) => {
   const {
     user: { token },
   } = getState();
@@ -29,7 +29,7 @@ export const uploadImageAsync = (image) => async (dispatch, getState) => {
   const { size } = image;
   const imageBinaryData = await readFile(image);
 
-  const connection = await new APIConnection(`${process.env.REACT_APP_API_URL}/api/prediction`).setBody(imageBinaryData, 'binary').addHeader('Content-Length', size).authorizeJWT(token).connectPOST();
+  const connection = await new APIConnection(`${process.env.REACT_APP_API_URL}/api/patients/${userId}/prediction`).setBody(imageBinaryData, 'binary').addHeader('Content-Length', size).authorizeJWT(token).connectPOST();
 
   const { src, description, bboxes } = connection;
 
