@@ -9,6 +9,8 @@ import FormSelect from "./Form/FormSelect";
 import Page from "./Page/Page";
 import { toast } from "react-toastify";
 import { REQUIRED_VALIDATION_ERROR } from "../Common/FormValidation";
+import APIConnection from "../Common/APIConnection";
+import { selectUser } from "../Redux/Slices/User";
 
 /**
  * Patient edit form
@@ -18,8 +20,13 @@ import { REQUIRED_VALIDATION_ERROR } from "../Common/FormValidation";
 const PatientForm = (props) => {
   const dispatch = useDispatch();
 
+  const { token } = useSelector(selectUser);
+
   const [firstName, setFirstName] = useState("");
   const [firstNameErrorInfo, setFirstNameErrorInfo] = useState(false);
+
+  const [identificator, setIdentificator] = useState("");
+  const [identificatorInfo, setIdentificatorInfo] = useState(false);
 
   const [birthDate, setBirthDate] = useState("");
   const [birthDateErrorInfo, setBirthDateErrorInfo] = useState(false);
@@ -48,7 +55,7 @@ const PatientForm = (props) => {
     }
   }, [dispatch, id, login, name, surname]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setFirstNameErrorInfo("");
@@ -77,9 +84,23 @@ const PatientForm = (props) => {
         isValidated = false;
       }
 
+      if (!identificator) {
+        setIdentificatorInfo(REQUIRED_VALIDATION_ERROR);
+        isValidated = false;
+      }
+
       if (!isValidated) {
         throw new Error("Validation error");
       }
+
+      await new APIConnection(`${process.env.REACT_APP_API_URL}/api/patients`).setBody({
+        first_name: firstName,
+        last_name: lastName,
+        birth_date: birthDate,
+        sex: gender,
+        ident: identificator,
+
+      }).authorizeJWT(token).connectPOST();
 
       toast.success("Zapisano dane pacjenta!");
     } catch (exception) {
@@ -97,6 +118,14 @@ const PatientForm = (props) => {
     <AuthAdmin>
       <Page title={`${isEdit ? "Edycja" : "Dodawanie"} pacjenta`}>
         <Form onSubmit={handleSubmit}>
+          <FormInput
+            value={identificator}
+            onChange={setIdentificator}
+            errorInfo={identificatorInfo}
+            title="Identyfikator"
+            type="text"
+            name="identificator"
+          />
           <FormInput
             value={firstName}
             onChange={setFirstName}

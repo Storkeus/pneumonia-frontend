@@ -15,6 +15,7 @@ export default class APIConnection {
     setBody(body, typeOfBody = 'json') {
         if (typeOfBody === 'json') {
             body = JSON.stringify(body);
+            this.addHeader("Content-Type", "application/json");
         }
 
         if (typeOfBody === 'binary') {
