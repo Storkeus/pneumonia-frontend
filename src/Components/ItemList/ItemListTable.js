@@ -78,9 +78,9 @@ const ItemListTable = (props) => {
           <tbody>
             {rows.map((row, rowKey) => (
               <StyledItemListTableRow data-is-loading={isLoading} key={rowKey}>
-                {head.map(({ columnName }, columnKey) => (
+                {head.map(({ columnName, modifier = value => value }, columnKey) => (
                   <StyledItemListTableCell key={columnKey}>
-                    {row[columnName]}
+                    {modifier(row[columnName])}
                   </StyledItemListTableCell>
                 ))}
                 {areActions ? (

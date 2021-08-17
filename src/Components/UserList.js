@@ -21,7 +21,7 @@ import { useHistory } from "react-router";
  */
 const UserList = (props) => {
   const dispatch = useDispatch();
-  const patientList = useSelector(selectList);
+  const userList = useSelector(selectList);
   const page = useSelector(selectPage);
   const search = useSelector(selectSearch);
   const isLoading = useSelector(selectIsLoading);
@@ -80,11 +80,11 @@ const UserList = (props) => {
           handleSearchChange={handleSearchChange}
           head={[
             { name: "ID", columnName: "id" },
-            { name: "Login", columnName: "login" },
-            { name: "Imię", columnName: "name" },
-            { name: "Nazwisko", columnName: "surname" },
+            { name: "E-mail", columnName: "username" },
+            { name: "Imię", columnName: "first_name" },
+            { name: "Nazwisko", columnName: "last_name" },
           ]}
-          rows={patientList}
+          rows={userList ? userList.users : []}
           actions={[
             {
               title: "Edytuj dane użytkownika",

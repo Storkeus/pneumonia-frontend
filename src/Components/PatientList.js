@@ -100,7 +100,7 @@ const PatientList = (props) => {
             { name: "Imię", columnName: "first_name" },
             { name: "Nazwisko", columnName: "last_name" },
             { name: "Data urodzenia", columnName: "birth_date" },
-            { name: "Płeć", columnName: "sex" },
+            { name: "Płeć", columnName: "sex", modifier: (value) => value === '1' ? 'M' : 'K' },
           ]}
           rows={patientList ? patientList.patients : []}
           actions={[
