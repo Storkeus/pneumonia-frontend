@@ -36,7 +36,7 @@ class App extends React.Component {
           <Route path="/patients/:id/upload-image">
             <UploadImage></UploadImage>
           </Route>
-          <Route path="/patients/edit/:id">
+          <Route path="/patients/:id/edit">
             <PatientForm></PatientForm>
           </Route>
           <Route path="/patients/add">
@@ -45,7 +45,7 @@ class App extends React.Component {
           <Route path="/patients">
             <PatientList></PatientList>
           </Route>
-          <Route path="/users/edit/:id">
+          <Route path="/users/:id/edit">
             <UserForm></UserForm>
           </Route>
           <Route path="/users/add">

@@ -36,7 +36,7 @@ const Prediction = (props) => {
           </div>
         </Page>
       ) : (
-        <Redirect to="/image-upload" />
+        <Redirect to="/" />
       )}
     </AuthUser>
   );

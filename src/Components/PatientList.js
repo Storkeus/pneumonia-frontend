@@ -58,8 +58,26 @@ const PatientList = (props) => {
    * @param {int} id
    */
   const handleActionEdit = (id, history) => {
-    history.push(`/patients/edit/${id}`);
+    history.push(`/patients/${id}/edit`);
   };
+
+  /**
+ * Handling test action performed on ItemList of patients
+ * @param {int} id
+ */
+  const handleActionTest = (id, history) => {
+    history.push(`/patients/${id}/upload-image`);
+  };
+
+  /**
+ * Handling test action performed on ItemList of patients
+ * @param {int} id
+ */
+  const handleActionOpenTestList = (id, history) => {
+    history.push(`/patients/${id}/tests`);
+  };
+
+
 
   /**
    * Handling remove action performed on ItemList
@@ -78,14 +96,24 @@ const PatientList = (props) => {
           handlePageChange={handlePageChange}
           handleSearchChange={handleSearchChange}
           head={[
-            { name: "ID", columnName: "id" },
-            { name: "Imię", columnName: "name" },
-            { name: "Nazwisko", columnName: "surname" },
-            { name: "Wiek", columnName: "age" },
+            { name: "ID", columnName: "ident" },
+            { name: "Imię", columnName: "first_name" },
+            { name: "Nazwisko", columnName: "last_name" },
+            { name: "Data urodzenia", columnName: "birth_date" },
             { name: "Płeć", columnName: "sex" },
           ]}
-          rows={patientList}
+          rows={patientList ? patientList.patients : []}
           actions={[
+            {
+              title: "Prześlij zdjęcie klatki piersiowej",
+              name: "Zbadaj",
+              handler: (id) => handleActionTest(id, history),
+            },
+            {
+              title: "Wyświetl badania powiązane z pacjentem",
+              name: "Lista badań",
+              handler: (id) => handleActionOpenTestList(id, history),
+            },
             {
               title: "Edytuj dane pacjenta",
               name: "Edytuj",

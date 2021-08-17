@@ -59,7 +59,7 @@ const UserList = (props) => {
    * @param {int} id
    */
   const handleActionEdit = (id, history) => {
-    history.push(`/users/edit/${id}`);
+    history.push(`/users/${id}/edit`);
   };
 
   /**
