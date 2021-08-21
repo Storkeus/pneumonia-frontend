@@ -48,6 +48,10 @@ export default class APIConnection {
                 }
             );
 
+            if (!connection.ok) {
+                throw new Error('Connection errror');
+            }
+
             const result = await connection.json();
             return result;
         } catch (error) {

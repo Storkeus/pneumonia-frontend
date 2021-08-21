@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import APIConnection from "../../Common/APIConnection";
-import { PERMISSIONS_ADMIN } from "../../Common/Permissions";
 
 export const userSlice = createSlice({
   name: "user",
@@ -31,9 +30,17 @@ export const loginAsync = (email, password) => async (dispatch) => {
   try {
 
     const connection = await new APIConnection(`${process.env.REACT_APP_API_URL}/api/token`).authorizeBasic(email, password).connectPOST();
-    const { token } = connection;
 
-    const permissions = PERMISSIONS_ADMIN;
+    if (!connection) {
+      throw new Error('Connection error');
+    }
+    const { token, permissions } = connection;
+
+    if (!token) {
+      throw new Error('Invalid token');
+    }
+
+
     dispatch(
       loginSucess({ email: email, token: token, permissions: permissions })
     );
