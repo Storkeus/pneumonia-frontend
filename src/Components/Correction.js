@@ -5,11 +5,16 @@ import Page from "./Page/Page";
 import {
   selectSrc,
   selectBBoxes,
+  selectId,
 } from "../Redux/Slices/Image";
 import { Redirect } from "react-router-dom";
 import PredictionCorrection from "./PredictionCorrection/PredictionCorrection";
 import { StyledFormButton, StyledFormButtonHorizontalContainer, StyledFormButtonSecondary, StyledFormInputList, StyledFormInputListItem } from "./Form/Styled";
 import { HEALTHY, UNCLEAR, UNHEALTHY } from "../Common/PredictionConst";
+import APIConnection from "../Common/APIConnection";
+import { toast } from "react-toastify";
+import { selectUser } from "../Redux/Slices/User";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 /**
  * Prediction result page
@@ -19,8 +24,11 @@ import { HEALTHY, UNCLEAR, UNHEALTHY } from "../Common/PredictionConst";
 const Prediction = (props) => {
   const src = useSelector(selectSrc);
   const initialBBoxes = useSelector(selectBBoxes);
+  const testId = useSelector(selectId);
   const [bboxes, setBboxes] = useState([]);
   const [selectedResult, setSelectedResult] = useState(null);
+  const { token } = useSelector(selectUser);
+  const history = useHistory();
 
   useEffect(() => {
     setBboxes([...initialBBoxes]);
@@ -36,7 +44,28 @@ const Prediction = (props) => {
     setBboxes([]);
   }
 
-  const submitCorrection = () => {
+  const submitCorrection = async () => {
+
+
+    try {
+      /**
+       *    
+          user_id = request.json.get('user_id')
+          status_correction = request.json.get('status_correction')
+          description_correction = request.json.get('description_correction')
+       * 
+       */
+      await new APIConnection(`${process.env.REACT_APP_API_URL}/api/tests/${testId}`).setBody({
+        bboxes: bboxes,
+        status_correction: selectedResult,
+        description_correction: "Poprawka"
+
+      }).authorizeJWT(token).connectPUT();
+      toast.success("Zapisano poprawione badanie.");
+      history.push("/patients");
+    } catch (error) {
+      toast.error("Wystąpił błąd. Nie udało się zapisać poprawionego badania.");
+    }
 
   }
 
@@ -61,7 +90,7 @@ const Prediction = (props) => {
               <StyledFormInputListItem>
                 <label>
                   <input onClick={() => setSelectedResult(UNCLEAR)} value={UNCLEAR} checked={selectedResult === UNCLEAR} name="result" type="radio" />
-                  Nie stwierdzono zapalenia płuc, ale płuca też nie są zdrowe. Zalecana jest powierzchowna analiza.
+                  Nie stwierdzono zapalenia płuc, ale płuca też nie są zdrowe.
                 </label>
               </StyledFormInputListItem>
             </StyledFormInputList>

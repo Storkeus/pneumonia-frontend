@@ -10,7 +10,7 @@ import {
  * @param {object} props
  * @returns
  */
-const PredictionImage = ({ src, alt = "", bboxes = [] }) => {
+const PredictionImage = ({ style, src, alt = "", bboxes = [] }) => {
   const [ratio, setRatio] = useState(1);
   const imageRef = useRef();
 
@@ -24,8 +24,9 @@ const PredictionImage = ({ src, alt = "", bboxes = [] }) => {
         ref={imageRef}
         src={src}
         alt={alt}
+        style={style}
       />
-      {bboxes.map(({ x, y, width, height }, key) => {
+      {bboxes.map(({ x, y, width, height, correction = 0 }, key) => {
         x *= ratio;
         y *= ratio;
         width *= ratio;
@@ -33,7 +34,7 @@ const PredictionImage = ({ src, alt = "", bboxes = [] }) => {
         return (
           <StyledPredictionImageBox
             key={key}
-            style={{ left: x, top: y, width: width, height: height }}
+            style={{ left: x, top: y, width: width, height: height, borderColor: correction ? '#10f4ff' : 'red' }}
           />
         );
       })}

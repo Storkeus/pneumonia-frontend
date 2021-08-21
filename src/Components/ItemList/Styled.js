@@ -132,7 +132,7 @@ background-color:#00cc00;
 `;
 
 export const StyledItemListUnhealthyBadge = styled(StyledItemListBadge)`
-background-color:#ffcc00;
+background-color:#c82222;
 `;
 
 

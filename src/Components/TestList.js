@@ -15,6 +15,7 @@ import ItemList from "./ItemList/ItemList";
 import UnclearBadge from "./ItemList/UnclearBadge";
 import UnhealthyBadge from "./ItemList/UnhealthyBadge";
 import Page from "./Page/Page";
+import PredictionImage from "./PredictionImage/PredictionImage";
 
 /**
  * Test of patients list page
@@ -58,10 +59,18 @@ const TestList = (props) => {
           maxPage={testList ? testList.max_page : 0}
           handlePageChange={handlePageChange}
           head={[
-            { name: "Zdjęcie", columnName: "id", modifier: (id) => <img style={{ height: '300px' }} alt="" src={`${process.env.REACT_APP_API_URL}/images/predictions/${id}/${id}.jpg`} /> },
-            { name: "Stan - model", columnName: "status_model", modifier: (status) => status === HEALTHY ? <HealthyBadge /> : status === UNHEALTHY ? <UnhealthyBadge /> : <UnclearBadge /> },
+            {
+              name: "Zdjęcie", columnName: "id", modifier: ({ areas, id }) =>
+                <PredictionImage
+                  bboxes={areas}
+                  src={`${process.env.REACT_APP_API_URL}/images/predictions/${patientId}/${id}.jpg`}
+                  alt=""
+                  style={{ height: '300px' }}
+                />
+            },
+            { name: "Stan - model", columnName: "status_model", modifier: ({ status_model: status }) => status === HEALTHY ? <HealthyBadge /> : status === UNHEALTHY ? <UnhealthyBadge /> : <UnclearBadge /> },
             { name: "Opis - model", columnName: "description_model" },
-            { name: "Stan - korekta", columnName: "status_correction", modifier: (status) => status === HEALTHY ? <HealthyBadge /> : status === UNHEALTHY ? <UnhealthyBadge /> : status ? <UnclearBadge /> : ' - ' },
+            { name: "Stan - korekta", columnName: "status_correction", modifier: ({ status_correction: status }) => status === HEALTHY ? <HealthyBadge /> : status === UNHEALTHY ? <UnhealthyBadge /> : status ? <UnclearBadge /> : ' - ' },
             { name: "Opis - korekta", columnName: "description_correction" },
           ]}
           rows={testList ? testList.tests : []}

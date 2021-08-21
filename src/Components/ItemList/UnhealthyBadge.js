@@ -2,10 +2,10 @@ import React from "react";
 import { StyledItemListUnhealthyBadge } from "./Styled";
 
 /**
- * Render badge representing healthy lungs
+ * Render badge representing unhealthy lungs
  */
 const UnhealthyBadge = () => {
-    return <StyledItemListUnhealthyBadge>Zdrowe</StyledItemListUnhealthyBadge>;
+    return <StyledItemListUnhealthyBadge>Niezdrowe</StyledItemListUnhealthyBadge>;
 };
 
 export default UnhealthyBadge;
