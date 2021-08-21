@@ -75,6 +75,7 @@ const UserList = (props) => {
         <ItemList
           isLoading={isLoading}
           page={page}
+          maxPage={userList ? userList.max_page : 0}
           search={search}
           handlePageChange={handlePageChange}
           handleSearchChange={handleSearchChange}

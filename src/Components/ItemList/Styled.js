@@ -137,5 +137,5 @@ background-color:#ffcc00;
 
 
 export const StyledItemListUnclearBadge = styled(StyledItemListBadge)`
-background-color:#cc0000;
+background-color:#c90;
 `;
