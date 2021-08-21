@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { PATIENT_MALE } from "../Common/PatientConst";
 import {
   loadListAsync,
   selectList,
@@ -100,7 +101,7 @@ const PatientList = (props) => {
             { name: "Imię", columnName: "first_name" },
             { name: "Nazwisko", columnName: "last_name" },
             { name: "Data urodzenia", columnName: "birth_date" },
-            { name: "Płeć", columnName: "sex", modifier: (value) => value === '1' ? 'M' : 'K' },
+            { name: "Płeć", columnName: "sex", modifier: (value) => value === PATIENT_MALE ? 'M' : 'K' },
           ]}
           rows={patientList ? patientList.patients : []}
           actions={[

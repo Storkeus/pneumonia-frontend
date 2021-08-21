@@ -13,8 +13,7 @@ import {
  * @returns {object} \<StyledPagination\>
  */
 const Pagination = (props) => {
-  const { page, handlePageChange } = props;
-  const totalPage = 3;
+  const { page, handlePageChange, maxPage } = props;
 
   const handleClickBefore = (event) => {
     handlePageChange(page - 1);
@@ -33,10 +32,10 @@ const Pagination = (props) => {
       </StyledPaginationButton>
 
       <StyledPageInfo>
-        strona {page} z {totalPage}
+        strona {page} z {maxPage}
       </StyledPageInfo>
       <StyledPaginationButton
-        data-hidden={page === totalPage}
+        data-hidden={page === maxPage}
         onClick={handleClickNext}
       >
         Następna

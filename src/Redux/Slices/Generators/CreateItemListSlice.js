@@ -8,7 +8,7 @@ import APIConnection from "../../../Common/APIConnection";
  * by connecting with url
  */
 
-const createItemListSlice = ({ sliceName, url, singleUrl }) => {
+const createItemListSlice = ({ sliceName, url, singleUrl, resource = null }) => {
   const itemList = createSlice({
     name: sliceName,
     initialState: {
@@ -56,21 +56,15 @@ const createItemListSlice = ({ sliceName, url, singleUrl }) => {
   const loadByIdAsync = (id) => async (dispatch, getState) => {
     dispatch(setIsLoading(true));
     try {
-      const connectionResult = await new APIConnection(`${process.env.REACT_APP_API_URL}${singleUrl}/${id}`).authorizeJWT(getState()['user'].token).connectGET();
+      const connectionResult = await new APIConnection(`${process.env.REACT_APP_API_URL}${singleUrl}/${id}${resource ? `/${resource}` : ''}`).authorizeJWT(getState()['user'].token).connectGET();
 
-      const { name, surname, login } = connectionResult;
 
       if (!connectionResult) {
         throw new Error('No connection result');
       }
 
       dispatch(
-        setSingle({
-          id: id,
-          name: name,
-          surname: surname,
-          login: login,
-        })
+        setSingle(connectionResult)
       );
 
 
@@ -80,13 +74,13 @@ const createItemListSlice = ({ sliceName, url, singleUrl }) => {
     dispatch(setIsLoading(false));
   };
 
-  const loadListAsync = () => async (dispatch, getState) => {
+  const loadListAsync = (id = '') => async (dispatch, getState) => {
     dispatch(setIsLoading(true));
     const { loadingCounter: initialLoadingCounter, page } = getState()[sliceName];
 
     try {
 
-      const connectionResult = await new APIConnection(`${process.env.REACT_APP_API_URL}${url}?page=${page}`).authorizeJWT(getState()['user'].token).connectGET();
+      const connectionResult = await new APIConnection(`${process.env.REACT_APP_API_URL}${url}${id ? `/${id}` : ''}${resource ? `/${resource}` : ''}?page=${page}`).authorizeJWT(getState()['user'].token).connectGET();
       const { loadingCounter: finalLoadingCounter } = getState()[sliceName];
 
       if (initialLoadingCounter < finalLoadingCounter) {

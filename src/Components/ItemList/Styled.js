@@ -117,3 +117,25 @@ export const StyledItemListFooter = styled.div`
     margin: 2rem 0 0;
   }
 `;
+
+const StyledItemListBadge = styled.span`
+display:block;
+padding:5px 10px;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+color:#fff;
+`;
+
+export const StyledItemListHealthyBadge = styled(StyledItemListBadge)`
+background-color:#00cc00;
+`;
+
+export const StyledItemListUnhealthyBadge = styled(StyledItemListBadge)`
+background-color:#ffcc00;
+`;
+
+
+export const StyledItemListUnclearBadge = styled(StyledItemListBadge)`
+background-color:#cc0000;
+`;
