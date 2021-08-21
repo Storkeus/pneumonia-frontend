@@ -93,6 +93,7 @@ const PatientList = (props) => {
         <ItemList
           isLoading={isLoading}
           page={page}
+          maxPage={patientList ? patientList.max_page : 0}
           search={search}
           handlePageChange={handlePageChange}
           handleSearchChange={handleSearchChange}
