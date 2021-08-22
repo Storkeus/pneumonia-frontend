@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 import Login from "./Components/Login";
 import PasswordReset from "./Components/PasswordReset";
@@ -14,7 +14,6 @@ import UserForm from "./Components/UserForm";
 import PatientForm from "./Components/PatientForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Page from "./Components/Page/Page";
 import TestList from "./Components/TestList";
 
 class App extends React.Component {
@@ -69,7 +68,7 @@ class App extends React.Component {
             <UploadModel></UploadModel>
           </Route>
           <Route path="/">
-            <Page></Page>
+            <Redirect to="/patients"></Redirect>
           </Route>
         </Switch>
         <ToastContainer pauseOnHover={false} position="bottom-right" />

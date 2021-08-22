@@ -92,7 +92,7 @@ const ItemListTable = (props) => {
                       <StyledItemListTableActionButton
                         key={key}
                         title={title}
-                        onClick={() => handler(row.id)}
+                        onClick={() => handler(row)}
                       >
                         {name}
                       </StyledItemListTableActionButton>

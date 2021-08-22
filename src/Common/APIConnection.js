@@ -49,12 +49,13 @@ export default class APIConnection {
             );
 
             if (!connection.ok) {
-                throw new Error('Connection errror');
+                throw new Error('Connection error');
             }
 
             const result = await connection.json();
             return result;
         } catch (error) {
+            // eslint-disable-next-line no-console
             return false;
         }
     }

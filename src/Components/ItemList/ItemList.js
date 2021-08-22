@@ -16,6 +16,11 @@ import ItemListTable from "./ItemListTable";
  * @returns {object} \<ItemListTable\>
  */
 const ItemList = (props) => {
+
+  if ((props.page < 1 || props.page > props.maxPage) && props.maxPage !== 0) {
+    props.handlePageChange(1);
+  }
+
   return <ItemListTable {...props}></ItemListTable>;
 };
 

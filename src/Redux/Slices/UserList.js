@@ -4,6 +4,7 @@ export const SLICE_NAME = "userList";
 export const {
   slice,
   loadListAsync,
+  removeAsync,
   loadByIdAsync,
   selectList,
   selectPage,

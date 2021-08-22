@@ -78,13 +78,13 @@ const Prediction = (props) => {
               <StyledFormInputListItem>
                 <label>
                   <input onClick={() => setSelectedResult(HEALTHY)} value={HEALTHY} checked={selectedResult === HEALTHY} name="result" type="radio" />
-                  Płuca zdrowe. Nie potrzeba analizować zdjęcia
+                  Płuca zdrowe.
                 </label>
               </StyledFormInputListItem>
               <StyledFormInputListItem>
                 <label>
                   <input onClick={() => setSelectedResult(UNHEALTHY)} value={UNHEALTHY} checked={selectedResult === UNHEALTHY} name="result" type="radio" />
-                  Zapalenie płuc. Należy dokładnie przyjrzeć się zdjęciu!
+                  Zapalenie płuc.
                 </label>
               </StyledFormInputListItem>
               <StyledFormInputListItem>

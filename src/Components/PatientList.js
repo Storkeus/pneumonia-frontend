@@ -10,6 +10,7 @@ import {
   selectIsLoading,
   setPage,
   setSearch,
+  removeAsync,
 } from "../Redux/Slices/PatientList";
 import AuthAdmin from "./Auth/AuthAdmin";
 import ItemList from "./ItemList/ItemList";
@@ -84,7 +85,9 @@ const PatientList = (props) => {
    * Handling remove action performed on ItemList
    * @param {int} id
    */
-  const handleActionRemove = (id) => {
+  const handleActionRemove = ({ id }) => {
+    dispatch(removeAsync(id));
+
   };
 
   return (
@@ -93,7 +96,7 @@ const PatientList = (props) => {
         <ItemList
           isLoading={isLoading}
           page={page}
-          maxPage={patientList ? patientList.max_page : 0}
+          maxPage={patientList && patientList.max_page ? patientList.max_page : 1}
           search={search}
           handlePageChange={handlePageChange}
           handleSearchChange={handleSearchChange}
@@ -109,17 +112,17 @@ const PatientList = (props) => {
             {
               title: "Prześlij zdjęcie klatki piersiowej",
               name: "Zbadaj",
-              handler: (id) => handleActionTest(id, history),
+              handler: ({ id }) => handleActionTest(id, history),
             },
             {
               title: "Wyświetl badania powiązane z pacjentem",
               name: "Lista badań",
-              handler: (id) => handleActionOpenTestList(id, history),
+              handler: ({ id }) => handleActionOpenTestList(id, history),
             },
             {
               title: "Edytuj dane pacjenta",
               name: "Edytuj",
-              handler: (id) => handleActionEdit(id, history),
+              handler: ({ id }) => handleActionEdit(id, history),
             },
             {
               title: "Usuń pacjenta",

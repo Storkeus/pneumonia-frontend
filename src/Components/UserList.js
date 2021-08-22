@@ -13,6 +13,7 @@ import AuthAdmin from "./Auth/AuthAdmin";
 import ItemList from "./ItemList/ItemList";
 import Page from "./Page/Page";
 import { useHistory } from "react-router";
+import { removeAsync } from "../Redux/Slices/PatientList";
 
 /**
  * User list page
@@ -67,6 +68,7 @@ const UserList = (props) => {
    * @param {int} id
    */
   const handleActionRemove = (id) => {
+    dispatch(removeAsync(id));
   };
 
   return (
@@ -75,7 +77,7 @@ const UserList = (props) => {
         <ItemList
           isLoading={isLoading}
           page={page}
-          maxPage={userList ? userList.max_page : 0}
+          maxPage={userList && userList.max_page ? userList.max_page : 1}
           search={search}
           handlePageChange={handlePageChange}
           handleSearchChange={handleSearchChange}
@@ -90,7 +92,7 @@ const UserList = (props) => {
             {
               title: "Edytuj dane użytkownika",
               name: "Edytuj",
-              handler: (id) => handleActionEdit(id, history),
+              handler: ({ id }) => handleActionEdit(id, history),
             },
             {
               title: "Usuń użytkownika",

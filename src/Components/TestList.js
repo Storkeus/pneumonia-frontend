@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { HEALTHY, UNHEALTHY } from "../Common/PredictionConst";
-import { setPage } from "../Redux/Slices/PatientList";
 import {
   loadListAsync,
+  setPage,
+  removeAsync,
   selectList,
   selectPage,
   selectIsLoading
@@ -43,10 +44,16 @@ const TestList = (props) => {
  */
   const handlePageChange = (page) => {
     dispatch(setPage({ page: page }));
-    dispatch(loadListAsync());
+    dispatch(loadListAsync(patientId));
   };
 
-
+  /**
+   * Handling remove action performed on ItemList
+   * @param {int} id
+   */
+  const handleActionRemove = async ({ id }) => {
+    dispatch(removeAsync(id, patientId));
+  };
 
 
 
@@ -56,7 +63,7 @@ const TestList = (props) => {
         <ItemList
           isLoading={isLoading}
           page={page}
-          maxPage={testList ? testList.max_page : 0}
+          maxPage={testList && testList.max_page ? testList.max_page : 1}
           handlePageChange={handlePageChange}
           head={[
             {
@@ -74,6 +81,13 @@ const TestList = (props) => {
             { name: "Opis - korekta", columnName: "description_correction" },
           ]}
           rows={testList ? testList.tests : []}
+          actions={[
+            {
+              title: "Usuń pacjenta",
+              name: "Usuń",
+              handler: handleActionRemove,
+            }
+          ]}
         ></ItemList>
       </Page>
     </AuthAdmin>

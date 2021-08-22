@@ -56,7 +56,7 @@ const createItemListSlice = ({ sliceName, url, singleUrl, resource = null }) => 
   const loadByIdAsync = (id) => async (dispatch, getState) => {
     dispatch(setIsLoading(true));
     try {
-      const connectionResult = await new APIConnection(`${process.env.REACT_APP_API_URL}${singleUrl}/${id}${resource ? `/${resource}` : ''}`).authorizeJWT(getState()['user'].token).connectGET();
+      const connectionResult = await new APIConnection(`${process.env.REACT_APP_API_URL}${singleUrl}/${id}`).authorizeJWT(getState()['user'].token).connectGET();
 
 
       if (!connectionResult) {
@@ -73,6 +73,37 @@ const createItemListSlice = ({ sliceName, url, singleUrl, resource = null }) => 
     }
     dispatch(setIsLoading(false));
   };
+
+
+  /**
+   * Removes single position
+   */
+  const removeAsync = (id, parent_id = false) => async (dispatch, getState) => {
+    try {
+      const connectionResult = await new APIConnection(`${process.env.REACT_APP_API_URL}${singleUrl}/${id}`).authorizeJWT(getState()['user'].token).connectDELETE();
+
+
+      if (!connectionResult) {
+        throw new Error('No connection result');
+      }
+      else {
+        toast.success('Pozycja usunięta');
+
+      }
+
+
+    } catch (error) {
+      toast.error('Nie udało się usunąć pozycji');
+
+
+    }
+    dispatch(
+      loadListAsync(parent_id)
+    );
+
+
+  };
+
 
   const loadListAsync = (id = '') => async (dispatch, getState) => {
     dispatch(setIsLoading(true));
@@ -126,6 +157,7 @@ const createItemListSlice = ({ sliceName, url, singleUrl, resource = null }) => 
     selectSingle: selectSingle,
     selectSearch: selectSearch,
     selectIsLoading: selectIsLoading,
+    removeAsync: removeAsync
   };
 };
 

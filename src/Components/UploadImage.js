@@ -10,7 +10,9 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const UploadImage = (props) => {
 
-  const { id: userId } = useParams();
+  const { id: patientId } = useParams();
+  // eslint-disable-next-line no-console
+  console.log(patientId);
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +27,7 @@ const UploadImage = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setIsLoading(true);
-    dispatch(uploadImageAsync(userId, image)).then(() => {
+    dispatch(uploadImageAsync(patientId, image)).then(() => {
       history.push("/prediction");
     });
   };
