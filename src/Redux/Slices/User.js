@@ -5,15 +5,25 @@ export const userSlice = createSlice({
   name: "user",
   initialState: {
     email: "",
-    name: "",
+    first_name: "",
+    last_name: "",
     token: "",
     permissions: "",
   },
   reducers: {
     loginSucess: (state, action) => {
-      const { email, token, permissions } = action.payload;
+      const { email, token, permissions, first_name, last_name } = action.payload;
       state.email = email;
       state.token = token;
+      state.first_name = first_name;
+      state.last_name = last_name;
+      state.permissions = permissions;
+    },
+    update: (state, action) => {
+      const { email, first_name, last_name, permissions } = action.payload;
+      state.email = email;
+      state.first_name = first_name;
+      state.last_name = last_name;
       state.permissions = permissions;
     },
     logout: (state) => {
@@ -24,7 +34,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { loginSucess, logout } = userSlice.actions;
+export const { loginSucess, logout, update } = userSlice.actions;
 
 export const loginAsync = (email, password) => async (dispatch) => {
   try {
@@ -34,15 +44,15 @@ export const loginAsync = (email, password) => async (dispatch) => {
     if (!connection) {
       throw new Error('Connection error');
     }
-    const { token, permissions } = connection;
+    const user = connection;
 
-    if (!token) {
+    if (!user.token) {
       throw new Error('Invalid token');
     }
 
 
     dispatch(
-      loginSucess({ email: email, token: token, permissions: permissions })
+      loginSucess(user)
     );
 
     return true;
@@ -50,6 +60,33 @@ export const loginAsync = (email, password) => async (dispatch) => {
     return false;
   }
 };
+export const updateAsync = (userData) => async (dispatch, getState) => {
+  try {
+
+    const { token } = getState()['user'];
+    const connection = await new APIConnection(`${process.env.REACT_APP_API_URL}/api/profile`)
+      .setBody(userData).authorizeJWT(token).connectPUT();
+
+    if (!connection) {
+      throw new Error('Connection error');
+    }
+    const user = connection;
+
+    if (!user) {
+      throw new Error('Invalid token');
+    }
+
+
+    dispatch(
+      update(user)
+    );
+
+    return true;
+  } catch {
+    return false;
+  }
+};
+
 
 export const selectUser = (state) => state.user;
 

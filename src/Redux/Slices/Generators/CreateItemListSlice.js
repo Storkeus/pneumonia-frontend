@@ -34,6 +34,10 @@ const createItemListSlice = ({ sliceName, url, singleUrl, resource = null }) => 
       },
       setSearch: (state, action) => {
         const { search } = action.payload;
+        if (state.search !== search) {
+
+          state.page = 1;
+        }
         state.search = search;
       },
       setIsLoading: (state, action) => {
@@ -104,14 +108,43 @@ const createItemListSlice = ({ sliceName, url, singleUrl, resource = null }) => 
 
   };
 
+  /**
+ * Removes single position
+ */
+  const updateAsync = (id, parent_id = false) => async (dispatch, getState) => {
+    try {
+      const connectionResult = await new APIConnection(`${process.env.REACT_APP_API_URL}${singleUrl}/${id}`).authorizeJWT(getState()['user'].token).connectPUT();
+
+
+      if (!connectionResult) {
+        throw new Error('No connection result');
+      }
+      else {
+        toast.success('Zmiany zostały zapisane');
+
+      }
+
+
+    } catch (error) {
+      toast.error('Nie udało się zapisać zmian');
+
+
+    }
+    dispatch(
+      loadListAsync(parent_id)
+    );
+
+
+  };
+
 
   const loadListAsync = (id = '') => async (dispatch, getState) => {
     dispatch(setIsLoading(true));
-    const { loadingCounter: initialLoadingCounter, page } = getState()[sliceName];
+    const { loadingCounter: initialLoadingCounter, page, search } = getState()[sliceName];
 
     try {
 
-      const connectionResult = await new APIConnection(`${process.env.REACT_APP_API_URL}${url}${id ? `/${id}` : ''}${resource ? `/${resource}` : ''}?page=${page}`).authorizeJWT(getState()['user'].token).connectGET();
+      const connectionResult = await new APIConnection(`${process.env.REACT_APP_API_URL}${url}${id ? `/${id}` : ''}${resource ? `/${resource}` : ''}?page=${page}${search ? `&keyword=${search}` : ''}`).authorizeJWT(getState()['user'].token).connectGET();
       const { loadingCounter: finalLoadingCounter } = getState()[sliceName];
 
       if (initialLoadingCounter < finalLoadingCounter) {
@@ -157,7 +190,8 @@ const createItemListSlice = ({ sliceName, url, singleUrl, resource = null }) => 
     selectSingle: selectSingle,
     selectSearch: selectSearch,
     selectIsLoading: selectIsLoading,
-    removeAsync: removeAsync
+    removeAsync: removeAsync,
+    updateAsync: updateAsync
   };
 };
 

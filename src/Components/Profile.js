@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { loadByIdAsync, selectSingle } from "../Redux/Slices/UserList";
 import AuthAdmin from "./Auth/AuthAdmin";
 import Form from "./Form/Form";
 import FormInput from "./Form/FormInput";
@@ -12,14 +10,14 @@ import {
   MAIL_VALIDATION_ERROR,
   REQUIRED_VALIDATION_ERROR,
 } from "../Common/FormValidation";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { selectUser, updateAsync } from "../Redux/Slices/User";
 
 /**
  * User edit form
  * @param {object} props
  * @returns {object} \<AuthAdmin\>
  */
-const UserForm = (props) => {
+const Profile = (props) => {
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
@@ -31,26 +29,22 @@ const UserForm = (props) => {
   const [lastName, setLastName] = useState("");
   const [lastNameErrorInfo, setLastNameErrorInfo] = useState(false);
 
-  const history = useHistory();
+  const [password, setPassword] = useState("");
 
-  const { id = false } = useParams();
 
-  const isEdit = !!id;
-
-  const current = useSelector(selectSingle);
-  const { login = "", name = "", surname = "" } = current;
+  const current = useSelector(selectUser);
+  const { email: login = "", first_name: name = "", last_name: surname = "" } = current;
 
   /**
    * Loading list of patients
    */
   useEffect(() => {
-    if (id) {
-      dispatch(loadByIdAsync(id));
-      setEmail(login);
-      setFirstName(name);
-      setLastName(surname);
-    }
-  }, [dispatch, id, login, name, surname]);
+
+    setEmail(login);
+    setFirstName(name);
+    setLastName(surname);
+
+  }, [current, login, name, surname]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -81,22 +75,18 @@ const UserForm = (props) => {
         throw new Error("Validation error");
       }
 
+      dispatch(updateAsync({ email: login, first_name: firstName, last_name: lastName, password: password }));
+
       toast.success("Zapisano dane użytkownika!");
-      history.push('/users');
+
     } catch (exception) {
       return false;
     }
   };
 
-  useEffect(() => {
-    if (id) {
-      dispatch(loadByIdAsync(id));
-    }
-  }, [id, dispatch]);
-
   return (
     <AuthAdmin>
-      <Page title={`${isEdit ? "Edycja" : "Dodawanie"} użytkownika`}>
+      <Page title={`Zmiana danych konta`} >
         <Form onSubmit={handleSubmit}>
           <FormInput
             value={email}
@@ -122,10 +112,18 @@ const UserForm = (props) => {
             type="text"
             name="last-name"
           />
+          <br /><br />
+          <FormInput
+            value={password}
+            onChange={setPassword}
+            title="Nowe hasło"
+            type="password"
+            name="password"
+          />
         </Form>
       </Page>
     </AuthAdmin>
   );
 };
 
-export default UserForm;
+export default Profile;

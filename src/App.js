@@ -15,6 +15,7 @@ import PatientForm from "./Components/PatientForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TestList from "./Components/TestList";
+import Profile from "./Components/Profile";
 
 class App extends React.Component {
   render() {
@@ -30,6 +31,9 @@ class App extends React.Component {
         <Switch>
           <Route path="/login">
             <Login></Login>
+          </Route>
+          <Route path="/profile">
+            <Profile></Profile>
           </Route>
           <Route path="/password-reset">
             <PasswordReset></PasswordReset>

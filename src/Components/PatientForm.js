@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 import { REQUIRED_VALIDATION_ERROR } from "../Common/FormValidation";
 import APIConnection from "../Common/APIConnection";
 import { selectUser } from "../Redux/Slices/User";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 /**
  * Patient edit form
@@ -40,6 +41,8 @@ const PatientForm = (props) => {
   const { id = false } = useParams();
 
   const isEdit = !!id;
+
+  const history = useHistory();
 
   const current = useSelector(selectSingle);
   const { login = "", name = "", surname = "" } = current;
@@ -103,6 +106,7 @@ const PatientForm = (props) => {
       }).authorizeJWT(token).connectPOST();
 
       toast.success("Zapisano dane pacjenta!");
+      history.push('/patients');
     } catch (exception) {
       return false;
     }

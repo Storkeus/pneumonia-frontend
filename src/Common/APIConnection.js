@@ -56,6 +56,7 @@ export default class APIConnection {
             return result;
         } catch (error) {
             // eslint-disable-next-line no-console
+            console.log(error);
             return false;
         }
     }
