@@ -16,6 +16,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TestList from "./Components/TestList";
 import Profile from "./Components/Profile";
+import PasswordResetSuccess from "./Components/PasswordResetSuccess";
+import PasswordResetFailure from "./Components/PasswordResetFailure";
 
 class App extends React.Component {
   render() {
@@ -70,6 +72,12 @@ class App extends React.Component {
           </Route>
           <Route path="/update-model">
             <UploadModel></UploadModel>
+          </Route>
+          <Route path="/password-reset-success">
+            <PasswordResetSuccess></PasswordResetSuccess>
+          </Route>
+          <Route path="/password-reset-failure">
+            <PasswordResetFailure></PasswordResetFailure>
           </Route>
           <Route path="/">
             <Redirect to="/patients"></Redirect>

@@ -55,8 +55,7 @@ export default class APIConnection {
             const result = await connection.json();
             return result;
         } catch (error) {
-            // eslint-disable-next-line no-console
-            console.log(error);
+
             return false;
         }
     }

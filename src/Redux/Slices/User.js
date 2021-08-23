@@ -60,6 +60,23 @@ export const loginAsync = (email, password) => async (dispatch) => {
     return false;
   }
 };
+
+export const passwordReset = (email, password) => async (dispatch) => {
+  try {
+
+    const connection = await new APIConnection(`${process.env.REACT_APP_API_URL}/api/password-reset`)
+      .setBody({ email: email, password: password }).connectPOST();
+
+    if (!connection) {
+      throw new Error('Connection error');
+    }
+
+
+    return true;
+  } catch {
+    return false;
+  }
+};
 export const updateAsync = (userData) => async (dispatch, getState) => {
   try {
 

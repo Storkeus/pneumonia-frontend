@@ -75,7 +75,7 @@ const Profile = (props) => {
         throw new Error("Validation error");
       }
 
-      dispatch(updateAsync({ email: login, first_name: firstName, last_name: lastName, password: password }));
+      dispatch(updateAsync({ email: email, first_name: firstName, last_name: lastName, password: password }));
 
       toast.success("Zapisano dane użytkownika!");
 
