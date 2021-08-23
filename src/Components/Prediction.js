@@ -24,7 +24,8 @@ const Prediction = (props) => {
   const chance = useSelector(selectChance);
 
   const chanceToText = chance => {
-    const chancePercent = parseInt(chance * 1000) / 100;
+    const chancePercent = parseInt(chance * 10000) / 100;
+
 
     if (chancePercent < 10) {
       return 'znikome';

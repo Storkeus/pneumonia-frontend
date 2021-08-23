@@ -10,7 +10,7 @@ import {
 import { Redirect } from "react-router-dom";
 import PredictionCorrection from "./PredictionCorrection/PredictionCorrection";
 import { StyledFormButton, StyledFormButtonHorizontalContainer, StyledFormButtonSecondary, StyledFormInputList, StyledFormInputListItem } from "./Form/Styled";
-import { HEALTHY, UNCLEAR, UNHEALTHY } from "../Common/PredictionConst";
+import { HEALTHY, UNCLEAR, UNHEALTHY, PREDICTION_DESCRIPTION } from "../Common/PredictionConst";
 import APIConnection from "../Common/APIConnection";
 import { toast } from "react-toastify";
 import { selectUser } from "../Redux/Slices/User";
@@ -58,7 +58,7 @@ const Prediction = (props) => {
       await new APIConnection(`${process.env.REACT_APP_API_URL}/api/tests/${testId}`).setBody({
         bboxes: bboxes,
         status_correction: selectedResult,
-        description_correction: "Poprawka"
+        description_correction: PREDICTION_DESCRIPTION[selectedResult]
 
       }).authorizeJWT(token).connectPUT();
       toast.success("Zapisano poprawione badanie.");
@@ -78,19 +78,19 @@ const Prediction = (props) => {
               <StyledFormInputListItem>
                 <label>
                   <input onClick={() => setSelectedResult(HEALTHY)} value={HEALTHY} checked={selectedResult === HEALTHY} name="result" type="radio" />
-                  Płuca zdrowe.
+                  {PREDICTION_DESCRIPTION[HEALTHY]}
                 </label>
               </StyledFormInputListItem>
               <StyledFormInputListItem>
                 <label>
                   <input onClick={() => setSelectedResult(UNHEALTHY)} value={UNHEALTHY} checked={selectedResult === UNHEALTHY} name="result" type="radio" />
-                  Zapalenie płuc.
+                  {PREDICTION_DESCRIPTION[UNHEALTHY]}
                 </label>
               </StyledFormInputListItem>
               <StyledFormInputListItem>
                 <label>
                   <input onClick={() => setSelectedResult(UNCLEAR)} value={UNCLEAR} checked={selectedResult === UNCLEAR} name="result" type="radio" />
-                  Nie stwierdzono zapalenia płuc, ale płuca też nie są zdrowe.
+                  {PREDICTION_DESCRIPTION[UNCLEAR]}
                 </label>
               </StyledFormInputListItem>
             </StyledFormInputList>
