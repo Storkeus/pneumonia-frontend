@@ -1,9 +1,12 @@
-import { saveState } from "./Storage";
+// import { logout } from '../Redux/Slices/User';
+// import store from '../Redux/Store';
 
 export default class APIConnection {
     url = '';
     body = null;
     headers = {};
+    store = null;
+    isBasicAuthorization = false;
 
     constructor(url) {
         this.url = url;
@@ -29,6 +32,7 @@ export default class APIConnection {
     }
 
     authorizeBasic(email, password) {
+        this.isBasicAuthorization = true;
         this.addHeader("Authorization", `Basic  ${btoa(`${email}:${password}`)}`);
         return this;
     }
@@ -51,10 +55,12 @@ export default class APIConnection {
             );
 
             if (!connection.ok) {
-                if (connection.status === 401) {
+                if (connection.status === 401 && !this.isBasicAuthorization) {
 
-                    saveState({});
-                    window.location.reload();
+                    // eslint-disable-next-line no-console
+                    console.log('logout!');
+                    // store.dispatch(logout);
+
 
                 }
                 throw new Error('Connection error');
