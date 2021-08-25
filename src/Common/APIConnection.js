@@ -1,3 +1,5 @@
+import { saveState } from "./Storage";
+
 export default class APIConnection {
     url = '';
     body = null;
@@ -49,6 +51,12 @@ export default class APIConnection {
             );
 
             if (!connection.ok) {
+                if (connection.status === 401) {
+
+                    saveState({});
+                    window.location.reload();
+
+                }
                 throw new Error('Connection error');
             }
 
