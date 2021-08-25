@@ -61,7 +61,7 @@ const Prediction = (props) => {
         <Page title="Wynik predykcji">
           <div style={{ textAlign: "center" }}>
             <p>{description}</p>
-            <p>Prawdopodobieńśtwo wystąpienia zapalenia płuc: <strong style={{ textDecoration: 'underline dashed', cursor: 'pointer' }} title="0%-10% - znikome,
+            <p>Prawdopodobieństwo wystąpienia zapalenia płuc: <strong style={{ textDecoration: 'underline dashed', cursor: 'pointer' }} title="0%-10% - znikome,
             11%-30% - bardzo niskie,
             31%-40% - niskie,
             41%-60% - niejednoznaczne,
