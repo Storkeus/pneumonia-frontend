@@ -14,7 +14,7 @@ export const {
 } = createItemListSlice({
   sliceName: SLICE_NAME,
   url: "/api/users",
-  singleUrl: "/api/user",
+  singleUrl: "/api/users",
 });
 
 export const { setList, setPage, setSearch } = slice.actions;

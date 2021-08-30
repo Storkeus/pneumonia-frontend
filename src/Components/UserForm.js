@@ -13,6 +13,8 @@ import {
   REQUIRED_VALIDATION_ERROR,
 } from "../Common/FormValidation";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import APIConnection from "../Common/APIConnection";
+import { selectUser } from "../Redux/Slices/User";
 
 /**
  * User edit form
@@ -21,6 +23,8 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
  */
 const UserForm = (props) => {
   const dispatch = useDispatch();
+
+  const { token } = useSelector(selectUser);
 
   const [email, setEmail] = useState("");
   const [emailErrorInfo, setEmailErrorInfo] = useState(false);
@@ -38,7 +42,7 @@ const UserForm = (props) => {
   const isEdit = !!id;
 
   const current = useSelector(selectSingle);
-  const { login = "", name = "", surname = "" } = current;
+  const { email: emailCurrent = "", first_name: firstNameCurrent = "", last_name: lastNameCurrent = "" } = current;
 
   /**
    * Loading list of patients
@@ -46,11 +50,11 @@ const UserForm = (props) => {
   useEffect(() => {
     if (id) {
       dispatch(loadByIdAsync(id));
-      setEmail(login);
-      setFirstName(name);
-      setLastName(surname);
+      setEmail(emailCurrent);
+      setFirstName(firstNameCurrent);
+      setLastName(lastNameCurrent);
     }
-  }, [dispatch, id, login, name, surname]);
+  }, [dispatch, id, emailCurrent, firstNameCurrent, lastNameCurrent]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -80,6 +84,12 @@ const UserForm = (props) => {
       if (!isValidated) {
         throw new Error("Validation error");
       }
+
+      new APIConnection(`${process.env.REACT_APP_API_URL}/api/users${id ? `/${id}` : ''}`).setBody({
+        first_name: firstName,
+        last_name: lastName,
+        email: email
+      }).authorizeJWT(token).connectPUT();
 
       toast.success("Zapisano dane użytkownika!");
       history.push('/users');

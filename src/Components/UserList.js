@@ -83,7 +83,7 @@ const UserList = (props) => {
           handleSearchChange={handleSearchChange}
           head={[
             { name: "ID", columnName: "id" },
-            { name: "E-mail", columnName: "username" },
+            { name: "E-mail", columnName: "email" },
             { name: "Imię", columnName: "first_name" },
             { name: "Nazwisko", columnName: "last_name" },
           ]}
