@@ -11,6 +11,7 @@ import React from "react";
 const Select = (props) => {
 
   const setSelectValue = props.onChange;
+  const currentValue = props.value ? props.value : "0";
   const options = props.options
     ? props.options
     : [
@@ -22,6 +23,7 @@ const Select = (props) => {
     <select
       className={props.className}
       name={props.name}
+      value={currentValue}
       id={props.name}
       onChange={(e) => {
         setSelectValue(e.target.value);

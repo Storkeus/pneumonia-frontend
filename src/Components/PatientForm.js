@@ -32,7 +32,7 @@ const PatientForm = (props) => {
   const [birthDate, setBirthDate] = useState("");
   const [birthDateErrorInfo, setBirthDateErrorInfo] = useState(false);
 
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState("1");
   const [genderErrorInfo, setGenderErrorInfo] = useState(false);
 
   const [lastName, setLastName] = useState("");
@@ -45,7 +45,7 @@ const PatientForm = (props) => {
   const history = useHistory();
 
   const current = useSelector(selectSingle);
-  const { login = "", name = "", surname = "" } = current;
+  const { birth_date = "", first_name = "", ident = "", last_name = '', sex = '1' } = current;
 
   /**
    * Loading list of patients
@@ -53,10 +53,14 @@ const PatientForm = (props) => {
   useEffect(() => {
     if (id) {
       dispatch(loadByIdAsync(id));
-      setFirstName(name);
-      setLastName(surname);
+      setFirstName(first_name);
+      setLastName(last_name);
+      setIdentificator(identificator);
+      setBirthDate(birth_date);
+      setIdentificator(ident);
+      setGender(sex);
     }
-  }, [dispatch, id, login, name, surname]);
+  }, [dispatch, id, first_name, last_name, identificator, birth_date, ident, sex]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -96,14 +100,21 @@ const PatientForm = (props) => {
         throw new Error("Validation error");
       }
 
-      await new APIConnection(`${process.env.REACT_APP_API_URL}/api/patients`).setBody({
+      const connection = new APIConnection(`${process.env.REACT_APP_API_URL}/api/patients${id ? `/${id}` : ''}`).setBody({
         first_name: firstName,
         last_name: lastName,
         birth_date: birthDate,
         sex: gender,
         ident: identificator,
 
-      }).authorizeJWT(token).connectPOST();
+      }).authorizeJWT(token);
+
+      if (id) {
+        await connection.connectPUT();
+      }
+      else {
+        await connection.connectPOST();
+      }
 
       toast.success("Zapisano dane pacjenta!");
       history.push('/patients');
