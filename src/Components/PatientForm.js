@@ -171,7 +171,7 @@ const PatientForm = (props) => {
             value={gender}
             onChange={setGender}
             errorInfo={genderErrorInfo}
-            title="Płeć"
+            title="Płeć "
             name="last-name"
             options={[
               { name: "Mężczyzna", value: 1 },
