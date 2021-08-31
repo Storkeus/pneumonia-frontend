@@ -22,6 +22,7 @@ const Input = (props) => {
       className={props.className}
       name={props.name}
       id={props.name}
+      readOnly={props.readOnly}
       ref={innerRef}
       accept={accept}
       value={inputValue}

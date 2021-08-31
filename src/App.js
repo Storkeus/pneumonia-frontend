@@ -18,6 +18,9 @@ import TestList from "./Components/TestList";
 import Profile from "./Components/Profile";
 import PasswordResetSuccess from "./Components/PasswordResetSuccess";
 import PasswordResetFailure from "./Components/PasswordResetFailure";
+import PasswordSet from "./Components/PasswordSet";
+import PasswordSetSuccess from "./Components/PasswordSetSuccess";
+import PasswordSetFailure from "./Components/PasswordSetFailure";
 
 class App extends React.Component {
   render() {
@@ -39,6 +42,9 @@ class App extends React.Component {
           </Route>
           <Route path="/password-reset">
             <PasswordReset></PasswordReset>
+          </Route>
+          <Route path="/set-password/:token/:email">
+            <PasswordSet></PasswordSet>
           </Route>
           <Route path="/patients/:id/upload-image">
             <UploadImage></UploadImage>
@@ -78,6 +84,12 @@ class App extends React.Component {
           </Route>
           <Route path="/password-reset-failure">
             <PasswordResetFailure></PasswordResetFailure>
+          </Route>
+          <Route path="/password-set-success">
+            <PasswordSetSuccess></PasswordSetSuccess>
+          </Route>
+          <Route path="/password-set-failure">
+            <PasswordSetFailure></PasswordSetFailure>
           </Route>
           <Route path="/">
             <Redirect to="/patients"></Redirect>

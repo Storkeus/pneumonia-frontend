@@ -12,7 +12,7 @@ import {
   setSearch,
   removeAsync,
 } from "../Redux/Slices/PatientList";
-import AuthAdmin from "./Auth/AuthAdmin";
+import AuthUser from "./Auth/AuthUser";
 import ItemList from "./ItemList/ItemList";
 import Page from "./Page/Page";
 
@@ -91,7 +91,7 @@ const PatientList = (props) => {
   };
 
   return (
-    <AuthAdmin>
+    <AuthUser>
       <Page title="Lista pacjentów">
         <ItemList
           isLoading={isLoading}
@@ -132,7 +132,7 @@ const PatientList = (props) => {
           ]}
         ></ItemList>
       </Page>
-    </AuthAdmin>
+    </AuthUser>
   );
 };
 

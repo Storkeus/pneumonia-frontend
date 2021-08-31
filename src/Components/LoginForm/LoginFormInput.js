@@ -24,6 +24,7 @@ const LoginFormInput = (props) => {
       </StyledLoginFormInputLabel>
       <StyledLoginFormInput
         name={props.name}
+        readOnly={props.readOnly}
         id={props.name}
         value={props.value}
         type={props.type ? props.type : "text"}

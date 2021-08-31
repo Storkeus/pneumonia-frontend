@@ -27,7 +27,7 @@ export const StyledMenuNav = styled.nav`
 
 export const StyledMenuList = styled.ul`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin: 0;
   list-style: none;

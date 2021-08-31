@@ -15,6 +15,7 @@ import {
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import APIConnection from "../Common/APIConnection";
 import { selectUser } from "../Redux/Slices/User";
+import FormSelect from "./Form/FormSelect";
 
 /**
  * User edit form
@@ -35,6 +36,10 @@ const UserForm = (props) => {
   const [lastName, setLastName] = useState("");
   const [lastNameErrorInfo, setLastNameErrorInfo] = useState(false);
 
+  const [isAdmin, setIsAdmin] = useState("0");
+  const [isAdminErrorInfo, setIsAdminErrorInfo] = useState(false);
+
+
   const history = useHistory();
 
   const { id = false } = useParams();
@@ -42,7 +47,7 @@ const UserForm = (props) => {
   const isEdit = !!id;
 
   const current = useSelector(selectSingle);
-  const { email: emailCurrent = "", first_name: firstNameCurrent = "", last_name: lastNameCurrent = "" } = current;
+  const { email: emailCurrent = "", first_name: firstNameCurrent = "", last_name: lastNameCurrent = "", is_admin: isAdminCurrent } = current;
 
   /**
    * Loading list of patients
@@ -53,10 +58,11 @@ const UserForm = (props) => {
       setEmail(emailCurrent);
       setFirstName(firstNameCurrent);
       setLastName(lastNameCurrent);
+      setIsAdmin(isAdminCurrent);
     }
-  }, [dispatch, id, emailCurrent, firstNameCurrent, lastNameCurrent]);
+  }, [dispatch, id, emailCurrent, firstNameCurrent, lastNameCurrent, isAdminCurrent]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setEmailErrorInfo("");
@@ -81,15 +87,29 @@ const UserForm = (props) => {
         isValidated = false;
       }
 
+      if (!isAdmin) {
+        setIsAdminErrorInfo(REQUIRED_VALIDATION_ERROR);
+        isValidated = false;
+      }
+
       if (!isValidated) {
         throw new Error("Validation error");
       }
 
-      new APIConnection(`${process.env.REACT_APP_API_URL}/api/users${id ? `/${id}` : ''}`).setBody({
+      const connection = new APIConnection(`${process.env.REACT_APP_API_URL}/api/users${id ? `/${id}` : ''}`).setBody({
         first_name: firstName,
         last_name: lastName,
+        is_admin: isAdmin,
         email: email
-      }).authorizeJWT(token).connectPUT();
+      }).authorizeJWT(token);
+
+      if (id) {
+        await connection.connectPUT();
+      }
+      else {
+        await connection.connectPOST();
+      }
+
 
       toast.success("Zapisano dane użytkownika!");
       history.push('/users');
@@ -131,6 +151,17 @@ const UserForm = (props) => {
             title="Nazwisko"
             type="text"
             name="last-name"
+          />
+          <FormSelect
+            value={isAdmin}
+            onChange={setIsAdmin}
+            errorInfo={isAdminErrorInfo}
+            title="Uprawnienia"
+            name="is_admin"
+            options={[
+              { name: "Administator", value: 1 },
+              { name: "Użytkownik", value: 0 },
+            ]}
           />
         </Form>
       </Page>

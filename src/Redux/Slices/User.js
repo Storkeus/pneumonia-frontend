@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import APIConnection from "../../Common/APIConnection";
 
 export const userSlice = createSlice({
@@ -71,12 +72,34 @@ export const passwordReset = (email, password) => async (dispatch) => {
       throw new Error('Connection error');
     }
 
-
+    toast.success('Wysłano link potwierdzajacy zmainę hasła na adres e-mail.');
     return true;
   } catch {
+    toast.success('Wystąpił błąd podczas resetu hasła.');
+
     return false;
   }
 };
+
+
+export const passwordSet = (email, password, token) => async (dispatch) => {
+  try {
+
+    const connection = await new APIConnection(`${process.env.REACT_APP_API_URL}/api/password-set`)
+      .setBody({ email: email, password: password, token: token }).connectPUT();
+
+    if (!connection) {
+      throw new Error('Connection error');
+    }
+    toast.success('Zapisano hasło.');
+
+    return true;
+  } catch {
+    toast.success('Wystąpił błąd podczas ustawiania hasła.');
+    return false;
+  }
+};
+
 export const updateAsync = (userData) => async (dispatch, getState) => {
   try {
 

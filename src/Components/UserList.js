@@ -7,13 +7,13 @@ import {
   selectSearch,
   selectIsLoading,
   setPage,
+  removeAsync,
   setSearch,
 } from "../Redux/Slices/UserList";
 import AuthAdmin from "./Auth/AuthAdmin";
 import ItemList from "./ItemList/ItemList";
 import Page from "./Page/Page";
 import { useHistory } from "react-router";
-import { removeAsync } from "../Redux/Slices/PatientList";
 
 /**
  * User list page
@@ -67,7 +67,7 @@ const UserList = (props) => {
    * Handling remove action performed on ItemList
    * @param {int} id
    */
-  const handleActionRemove = (id) => {
+  const handleActionRemove = ({ id }) => {
     dispatch(removeAsync(id));
   };
 
