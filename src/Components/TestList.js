@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { HEALTHY, UNHEALTHY } from "../Common/PredictionConst";
 import {
   loadListAsync,
   setPage,
@@ -11,10 +10,7 @@ import {
   selectIsLoading
 } from "../Redux/Slices/PatientTestList";
 import AuthAdmin from "./Auth/AuthAdmin";
-import HealthyBadge from "./ItemList/HealthyBadge";
 import ItemList from "./ItemList/ItemList";
-import UnclearBadge from "./ItemList/UnclearBadge";
-import UnhealthyBadge from "./ItemList/UnhealthyBadge";
 import Page from "./Page/Page";
 import PredictionImage from "./PredictionImage/PredictionImage";
 
@@ -75,9 +71,7 @@ const TestList = (props) => {
                   style={{ height: '300px' }}
                 />
             },
-            { name: "Stan - model", columnName: "status_model", modifier: ({ status_model: status }) => status === HEALTHY ? <HealthyBadge /> : status === UNHEALTHY ? <UnhealthyBadge /> : <UnclearBadge /> },
             { name: "Opis - model", columnName: "description_model" },
-            { name: "Stan - korekta", columnName: "status_correction", modifier: ({ status_correction: status }) => status === HEALTHY ? <HealthyBadge /> : status === UNHEALTHY ? <UnhealthyBadge /> : status ? <UnclearBadge /> : ' - ' },
             { name: "Opis - korekta", columnName: "description_correction" },
           ]}
           rows={testList ? testList.tests : []}

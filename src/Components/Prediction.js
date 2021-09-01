@@ -24,35 +24,16 @@ const Prediction = (props) => {
   const chance = useSelector(selectChance);
 
   const chanceToText = chance => {
-    const chancePercent = parseInt(chance * 10000) / 100;
+    const chancePercent = parseInt(chance * 100);
 
+    let result = `${chancePercent}%`;
 
-    if (chancePercent < 10) {
-      return 'znikome';
+    if (chancePercent >= 40 && chancePercent <= 60) {
+      result += ' - wynik niepewny';
     }
 
-    if (chancePercent < 30) {
-      return 'bardzo niskie'
-    }
 
-    if (chancePercent < 40) {
-      return 'niskie'
-    }
-
-    if (chancePercent < 60) {
-      return 'niejednoznaczne'
-    }
-
-    if (chancePercent < 70) {
-      return 'średnie'
-    }
-
-    if (chancePercent < 85) {
-      return 'wysokie'
-    }
-
-    return 'bardzo wysokie';
-
+    return result;
   };
 
   return (
@@ -61,14 +42,7 @@ const Prediction = (props) => {
         <Page title="Wynik predykcji">
           <div style={{ textAlign: "center" }}>
             <p>{description}</p>
-            <p>Prawdopodobieństwo wystąpienia zapalenia płuc: <strong style={{ textDecoration: 'underline dashed', cursor: 'pointer' }} title="0%-10% - znikome,
-            11%-30% - bardzo niskie,
-            31%-40% - niskie,
-            41%-60% - niejednoznaczne,
-            61%-70% - średnie,
-            71%-85% - wysokie,
-            86%-100% - bardzo wysokie
-             ">{chanceToText(chance)}</strong></p>
+            <p>Prawdopodobieństwo wystąpienia zapalenia płuc: <strong>{chanceToText(chance)}</strong></p>
             <PredictionImage
               bboxes={bboxes}
               src={`${process.env.REACT_APP_API_URL}/${src}`}

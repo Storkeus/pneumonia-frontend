@@ -33,7 +33,6 @@ const PatientForm = (props) => {
   const [birthDateErrorInfo, setBirthDateErrorInfo] = useState(false);
 
   const [gender, setGender] = useState("1");
-  const [genderErrorInfo, setGenderErrorInfo] = useState(false);
 
   const [lastName, setLastName] = useState("");
   const [lastNameErrorInfo, setLastNameErrorInfo] = useState(false);
@@ -86,10 +85,7 @@ const PatientForm = (props) => {
         isValidated = false;
       }
 
-      if (!gender) {
-        setGenderErrorInfo(REQUIRED_VALIDATION_ERROR);
-        isValidated = false;
-      }
+
 
       if (!identificator) {
         setIdentificatorInfo(REQUIRED_VALIDATION_ERROR);
@@ -170,7 +166,6 @@ const PatientForm = (props) => {
           <FormSelect
             value={gender}
             onChange={setGender}
-            errorInfo={genderErrorInfo}
             title="Płeć "
             name="last-name"
             options={[

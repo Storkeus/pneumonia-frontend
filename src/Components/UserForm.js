@@ -37,7 +37,6 @@ const UserForm = (props) => {
   const [lastNameErrorInfo, setLastNameErrorInfo] = useState(false);
 
   const [isAdmin, setIsAdmin] = useState("0");
-  const [isAdminErrorInfo, setIsAdminErrorInfo] = useState(false);
 
 
   const history = useHistory();
@@ -87,10 +86,6 @@ const UserForm = (props) => {
         isValidated = false;
       }
 
-      if (!isAdmin) {
-        setIsAdminErrorInfo(REQUIRED_VALIDATION_ERROR);
-        isValidated = false;
-      }
 
       if (!isValidated) {
         throw new Error("Validation error");
@@ -155,7 +150,6 @@ const UserForm = (props) => {
           <FormSelect
             value={isAdmin}
             onChange={setIsAdmin}
-            errorInfo={isAdminErrorInfo}
             title="Uprawnienia"
             name="is_admin"
             options={[
