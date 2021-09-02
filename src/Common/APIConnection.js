@@ -26,6 +26,8 @@ export default class APIConnection {
         if (typeOfBody === 'binary') {
             this.addHeader("Content-Type", "application/octet-stream");
         }
+
+
         this.body = body;
 
         return this;

@@ -71,6 +71,15 @@ const TestList = (props) => {
                   style={{ height: '300px' }}
                 />
             },
+            {
+              name: "Data", columnName: "date", modifier: ({ date }) => {
+                const dateSplited = date.split('T');
+                const day = dateSplited[0];
+                const timeSplited = dateSplited[1].split('.');
+
+                return `${day} ${timeSplited[0]}`;
+              }
+            },
             { name: "Opis - model", columnName: "description_model" },
             { name: "Opis - korekta", columnName: "description_correction" },
           ]}

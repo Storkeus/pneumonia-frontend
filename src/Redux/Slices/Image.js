@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import APIConnection from "../../Common/APIConnection";
-import { readFile } from "../../Common/ReadFile";
+// import { readFile } from "../../Common/ReadFile";
 
 export const imageSlice = createSlice({
   name: "image",
@@ -31,9 +31,14 @@ export const uploadImageAsync = (userId, image) => async (dispatch, getState) =>
   } = getState();
 
   const { size } = image;
-  const imageBinaryData = await readFile(image);
+  // const imageBinaryData = await readFile(image);
 
-  const connection = await new APIConnection(`${process.env.REACT_APP_API_URL}/api/patients/${userId}/prediction`).setBody(imageBinaryData, 'binary').addHeader('Content-Length', size).authorizeJWT(token).connectPOST();
+
+  const formData = new FormData()
+
+  formData.append('image', image);
+
+  const connection = await new APIConnection(`${process.env.REACT_APP_API_URL}/api/patients/${userId}/prediction`).setBody(image, 'form').addHeader('Content-Length', size).authorizeJWT(token).connectPOST();
 
   const { src, description, bboxes, chance, id } = connection;
 
