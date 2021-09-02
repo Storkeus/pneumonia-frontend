@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import APIConnection from "../../Common/APIConnection";
+import { PERMISSIONS_ADMIN, PERMISSIONS_USER } from "../../Common/Permissions";
 
 export const userSlice = createSlice({
   name: "user",
@@ -21,11 +22,11 @@ export const userSlice = createSlice({
       state.permissions = permissions;
     },
     update: (state, action) => {
-      const { email, first_name, last_name, permissions } = action.payload;
+      const { email, first_name, last_name, is_admin } = action.payload;
       state.email = email;
       state.first_name = first_name;
       state.last_name = last_name;
-      state.permissions = permissions;
+      state.permissions = is_admin ? PERMISSIONS_ADMIN : PERMISSIONS_USER;
     },
     logout: (state) => {
       state.email = "";
