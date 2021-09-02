@@ -11,8 +11,6 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 const UploadImage = (props) => {
 
   const { id: patientId } = useParams();
-  // eslint-disable-next-line no-console
-  console.log(patientId);
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(false);

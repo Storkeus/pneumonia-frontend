@@ -4,7 +4,6 @@ import Page from "./Page/Page";
 import AuthUser from "./Auth/AuthUser";
 import { useSelector } from "react-redux";
 import { selectUser } from "../Redux/Slices/User";
-// import { readFile } from "../Common/ReadFile";
 import APIConnection from "../Common/APIConnection";
 import { toast } from "react-toastify";
 
@@ -30,10 +29,6 @@ const UploadModel = (props) => {
     event.preventDefault();
     setIsLoading(true);
 
-
-
-    // const { size } = file;
-    // const fileBinaryData = await readFile(file);
 
     const formData = new FormData()
 

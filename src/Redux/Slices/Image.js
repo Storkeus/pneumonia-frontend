@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import APIConnection from "../../Common/APIConnection";
-// import { readFile } from "../../Common/ReadFile";
 
 export const imageSlice = createSlice({
   name: "image",
@@ -29,10 +28,6 @@ export const uploadImageAsync = (userId, image) => async (dispatch, getState) =>
   const {
     user: { token },
   } = getState();
-
-  // const { size } = image;
-  // const imageBinaryData = await readFile(image);
-
 
   const formData = new FormData()
 

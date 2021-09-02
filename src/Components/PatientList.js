@@ -72,7 +72,7 @@ const PatientList = (props) => {
   };
 
   /**
- * Handling test action performed on ItemList of patients
+ * Handling open test list action performed on ItemList of patients
  * @param {int} id
  */
   const handleActionOpenTestList = (id, history) => {
