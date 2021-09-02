@@ -13,6 +13,8 @@ import AuthAdmin from "./Auth/AuthAdmin";
 import ItemList from "./ItemList/ItemList";
 import Page from "./Page/Page";
 import PredictionImage from "./PredictionImage/PredictionImage";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 /**
  * Test of patients list page
@@ -48,7 +50,23 @@ const TestList = (props) => {
    * @param {int} id
    */
   const handleActionRemove = async ({ id }) => {
-    dispatch(removeAsync(id, patientId));
+
+
+    confirmAlert({
+      title: 'Usuwanie',
+      message: 'Czy na pewno chcesz usunąć badanie?',
+      buttons: [
+        {
+          label: 'Tak, usuń',
+          onClick: () => dispatch(removeAsync(id, patientId))
+        },
+        {
+          label: 'Nie'
+        }
+      ],
+      overlayClassName: "confirmation-modal"
+    });
+
   };
 
 

@@ -15,6 +15,8 @@ import {
 import AuthUser from "./Auth/AuthUser";
 import ItemList from "./ItemList/ItemList";
 import Page from "./Page/Page";
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 /**
  * Patient list page
@@ -86,7 +88,23 @@ const PatientList = (props) => {
    * @param {int} id
    */
   const handleActionRemove = ({ id }) => {
-    dispatch(removeAsync(id));
+
+    confirmAlert({
+      title: 'Usuwanie',
+      message: 'Czy na pewno chcesz usunąć pacjenta?',
+      buttons: [
+        {
+          label: 'Tak, usuń',
+          onClick: () => dispatch(removeAsync(id))
+        },
+        {
+          label: 'Nie'
+        }
+      ],
+      overlayClassName: "confirmation-modal"
+    });
+
+
 
   };
 

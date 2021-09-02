@@ -31,3 +31,40 @@ code {
   flex-direction: column;
   justify-content: flex-start;
 }
+
+.confirmation-modal
+{
+background:red;
+}
+
+body .confirmation-modal .react-confirm-alert-body
+{
+ border-radius: 0;; 
+}
+body .confirmation-modal button
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #c06014;
+  color: #f3f4ed;
+  border-color: #fff;
+  font-size: 1.7rem;
+  border: none;
+  padding: 0.5rem 1.3rem; 
+  border-radius: 0;;
+}
+
+body .confirmation-modal button:nth-child(2)
+{
+
+  background-color: #f3f4ed;
+  color: #2a3751;
+
+}
+
+.confirmation-modal .react-confirm-alert-overlay
+{
+  animation: react-confirm-alert-fadeIn 0.2s 0.1s forwards;
+}

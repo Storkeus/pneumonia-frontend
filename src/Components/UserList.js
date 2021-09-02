@@ -14,6 +14,8 @@ import AuthAdmin from "./Auth/AuthAdmin";
 import ItemList from "./ItemList/ItemList";
 import Page from "./Page/Page";
 import { useHistory } from "react-router";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 /**
  * User list page
@@ -68,7 +70,22 @@ const UserList = (props) => {
    * @param {int} id
    */
   const handleActionRemove = ({ id }) => {
-    dispatch(removeAsync(id));
+
+    confirmAlert({
+      title: 'Usuwanie',
+      message: 'Czy na pewno chcesz usunąć użytkownika?',
+      buttons: [
+        {
+          label: 'Tak, usuń',
+          onClick: () => dispatch(removeAsync(id))
+        },
+        {
+          label: 'Nie'
+        }
+      ],
+      overlayClassName: "confirmation-modal"
+    });
+
   };
 
   return (
