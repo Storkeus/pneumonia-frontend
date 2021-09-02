@@ -4,7 +4,7 @@
 export default class APIConnection {
     url = '';
     body = null;
-    headers = {};
+    headers = { 'Access-Control-Allow-Origin': '*' };
     store = null;
     isBasicAuthorization = false;
 
@@ -46,6 +46,7 @@ export default class APIConnection {
 
     async connect(method) {
         try {
+
             const connection = await fetch(
                 `${this.url}`,
                 {

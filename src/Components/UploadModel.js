@@ -32,7 +32,7 @@ const UploadModel = (props) => {
 
 
 
-    const { size } = file;
+    // const { size } = file;
     // const fileBinaryData = await readFile(file);
 
     const formData = new FormData()
@@ -41,7 +41,7 @@ const UploadModel = (props) => {
 
     try {
 
-      await new APIConnection(`${process.env.REACT_APP_API_URL}/api/update-model`).setBody(formData, 'form').addHeader('Content-Length', size).authorizeJWT(token).connectPOST();
+      await new APIConnection(`${process.env.REACT_APP_API_URL}/api/update-model`).setBody(formData, 'form').authorizeJWT(token).connectPOST();
       toast.success("Zaktualizowano model.");
       setIsLoading(false);
     } catch (error) {

@@ -30,7 +30,7 @@ export const uploadImageAsync = (userId, image) => async (dispatch, getState) =>
     user: { token },
   } = getState();
 
-  const { size } = image;
+  // const { size } = image;
   // const imageBinaryData = await readFile(image);
 
 
@@ -38,7 +38,7 @@ export const uploadImageAsync = (userId, image) => async (dispatch, getState) =>
 
   formData.append('image', image);
 
-  const connection = await new APIConnection(`${process.env.REACT_APP_API_URL}/api/patients/${userId}/prediction`).setBody(image, 'form').addHeader('Content-Length', size).authorizeJWT(token).connectPOST();
+  const connection = await new APIConnection(`${process.env.REACT_APP_API_URL}/api/patients/${userId}/prediction`).setBody(formData, 'form').authorizeJWT(token).connectPOST();
 
   const { src, description, bboxes, chance, id } = connection;
 
