@@ -16,11 +16,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TestList from "./Components/TestList";
 import Profile from "./Components/Profile";
-import PasswordResetSuccess from "./Components/PasswordResetSuccess";
-import PasswordResetFailure from "./Components/PasswordResetFailure";
 import PasswordSet from "./Components/PasswordSet";
-import PasswordSetSuccess from "./Components/PasswordSetSuccess";
-import PasswordSetFailure from "./Components/PasswordSetFailure";
+import LoginFormNotification from "./Components/LoginFormNotification";
 
 class App extends React.Component {
   render() {
@@ -80,16 +77,19 @@ class App extends React.Component {
             <UploadModel></UploadModel>
           </Route>
           <Route path="/password-reset-success">
-            <PasswordResetSuccess></PasswordResetSuccess>
+            <LoginFormNotification text="Hasło zostało zmienione."></LoginFormNotification>
+
           </Route>
           <Route path="/password-reset-failure">
-            <PasswordResetFailure></PasswordResetFailure>
+            <LoginFormNotification text="Nie udało sie potwierdzić zmiany hasła."></LoginFormNotification>
           </Route>
           <Route path="/password-set-success">
-            <PasswordSetSuccess></PasswordSetSuccess>
+            <LoginFormNotification text="Hasło zostało zapisane."></LoginFormNotification>
+
           </Route>
           <Route path="/password-set-failure">
-            <PasswordSetFailure></PasswordSetFailure>
+            <LoginFormNotification text="Nie udało się zapisać hasła."></LoginFormNotification>
+
           </Route>
           <Route path="/">
             <Redirect to="/patients"></Redirect>

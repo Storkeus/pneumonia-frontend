@@ -15,8 +15,8 @@ import {
 import AuthUser from "./Auth/AuthUser";
 import ItemList from "./ItemList/ItemList";
 import Page from "./Page/Page";
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 /**
  * Patient list page

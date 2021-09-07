@@ -1,6 +1,3 @@
-// import { logout } from '../Redux/Slices/User';
-// import store from '../Redux/Store';
-
 export default class APIConnection {
     url = '';
     body = null;

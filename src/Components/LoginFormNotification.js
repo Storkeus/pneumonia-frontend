@@ -4,13 +4,13 @@ import AuthNotLogged from "./Auth/AuthNotLogged";
 import LoginForm from "./LoginForm/LoginForm";
 import LoginFormLinks from "./LoginForm/LoginFormLinks";
 
-const PasswordSetSuccess = () => {
+const LoginFormNotification = ({ text }) => {
 
 
 
   return (
     <AuthNotLogged>
-      <LoginForm title="Hasło zostało zapisane" >
+      <LoginForm title={text} >
 
         <LoginFormLinks>
           <Link to="/login"> Przejdź do logowania</Link>
@@ -19,4 +19,4 @@ const PasswordSetSuccess = () => {
     </AuthNotLogged>
   );
 };
-export default PasswordSetSuccess;
+export default LoginFormNotification;
