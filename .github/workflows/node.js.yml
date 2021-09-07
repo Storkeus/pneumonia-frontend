@@ -39,7 +39,7 @@ jobs:
         source_file: 'build'
         remove_existing: true
         destination_repo: 'storkeus/pneumonia-backend'
-        destination_folder: ''
+        destination_folder: 'front'
         user_email: 'bartosz.lyzwa@o2.pl'
         user_name: 'storkeus'
         commit_message: Update of front from ${{ github.head_ref }}
