@@ -73,7 +73,7 @@ export const passwordReset = (email, password) => async (dispatch) => {
       throw new Error('Connection error');
     }
 
-    toast.success('Wysłano link potwierdzajacy zmainę hasła na adres e-mail.');
+    toast.success('Wysłano link potwierdzajacy zmianę hasła na adres e-mail.');
     return true;
   } catch {
     toast.success('Wystąpił błąd podczas resetu hasła.');
