@@ -32,10 +32,6 @@ code {
   justify-content: flex-start;
 }
 
-.confirmation-modal
-{
-background:red;
-}
 
 body .confirmation-modal .react-confirm-alert-body
 {
