@@ -59,7 +59,7 @@ const Login = () => {
         />
         <LoginFormButton name="Zaloguj się" />
         <LoginFormLinks>
-          <Link to="/password-reset">Przypomnij hasło.</Link>
+          <Link to="/password-reset">Zresetuj hasło.</Link>
         </LoginFormLinks>
       </LoginForm>
     </AuthNotLogged>
