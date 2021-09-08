@@ -27,6 +27,11 @@ const UploadModel = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!file) {
+      toast.error('Wybierz plik do przesłania.');
+      return;
+    }
+
     setIsLoading(true);
 
 

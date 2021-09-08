@@ -6,6 +6,7 @@ import Page from "./Page/Page";
 import { useHistory } from "react-router-dom";
 import AuthUser from "./Auth/AuthUser";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { toast } from "react-toastify";
 
 
 const UploadImage = (props) => {
@@ -24,6 +25,11 @@ const UploadImage = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!image) {
+      toast.error('Wybierz plik do przesłania.');
+      return;
+    }
+
     setIsLoading(true);
     dispatch(uploadImageAsync(patientId, image)).then(() => {
       history.push("/prediction");
