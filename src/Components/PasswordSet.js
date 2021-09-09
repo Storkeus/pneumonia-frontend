@@ -8,6 +8,7 @@ import AuthNotLogged from "./Auth/AuthNotLogged";
 import { useDispatch } from "react-redux";
 import { checkIsValidEmail } from "../Common/FormValidation";
 import { passwordSet } from "../Redux/Slices/User";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 /**
  * Password set page
@@ -23,6 +24,7 @@ const PasswordSet = () => {
   const [passwordErrorInfo, setPasswordErrorInfo] = useState(false);
   const dispatch = useDispatch();
 
+  const history = useHistory();
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
@@ -39,6 +41,8 @@ const PasswordSet = () => {
         setPasswordErrorInfo("Podane dane są nieprawidłowe");
       }
     });
+
+    history.push('/password-set-success');
   };
 
   return (

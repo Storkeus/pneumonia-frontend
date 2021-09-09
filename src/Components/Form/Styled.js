@@ -36,6 +36,13 @@ export const StyledFormInput = styled(Input)`
     border-color: ${COLOR_SPECIAL};
     outline: none;
   }
+
+  @media(max-width:991px){
+
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    max-width: 30rem;
+  }
 `;
 
 export const StyledFormSelect = styled(Select)`

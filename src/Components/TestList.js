@@ -74,6 +74,11 @@ const TestList = (props) => {
   return (
     <AuthAdmin>
       <Page title="Lista badań ">
+        <div style={{ display: "flex", alignItems: 'center', gap: '10px', margin: '0 0 10px', flexWrap: 'wrap' }}>
+          Kolory obszarów na zdjęciach:&nbsp;
+          <div style={{ padding: '2px 5px', backgroundColor: 'red', color: '#fff' }}>Predykcja</div>
+          <div style={{ padding: '2px 5px', backgroundColor: '#10f4ff', color: '#fff' }}>Korekta</div>
+        </div>
         <ItemList
           isLoading={isLoading}
           page={page}
