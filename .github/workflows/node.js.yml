@@ -31,15 +31,16 @@ jobs:
       env:
           REACT_APP_API_URL: ''
     - run: npm test
+    - run: mv build front
     - name: Push build to backend repository
       uses: storkeus/copy_file_to_another_repo_action@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: 'build'
+        source_file: 'fron'
         remove_existing: true
         destination_repo: 'storkeus/pneumonia-backend'
-        destination_folder: 'front'
+        destination_folder: ''
         user_email: 'bartosz.lyzwa@o2.pl'
         user_name: 'storkeus'
-        commit_message: Update of front from ${{ github.head_ref }}
+        commit_message: Update build of front 
