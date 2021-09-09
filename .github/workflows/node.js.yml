@@ -37,7 +37,7 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: 'fron'
+        source_file: 'front'
         remove_existing: true
         destination_repo: 'storkeus/pneumonia-backend'
         destination_folder: ''
