@@ -98,11 +98,18 @@ const UserForm = (props) => {
         email: email
       }).authorizeJWT(token);
 
+      let response;
       if (id) {
-        await connection.connectPUT();
+        response = await connection.connectPUT();
       }
       else {
-        await connection.connectPOST();
+        response = await connection.connectPOST();
+      }
+
+
+      if (!response) {
+        toast.error('Adres e-mail już istnieje w bazie danych.');
+        throw new Error('Response error');
       }
 
 
