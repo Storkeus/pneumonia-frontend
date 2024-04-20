@@ -1,6 +1,4 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created as part of my Engineering Thesis and it's a front of system supporting the doctor's work in the diagnosis of pneumonia written in React.
 
 ## Available Scripts
 
